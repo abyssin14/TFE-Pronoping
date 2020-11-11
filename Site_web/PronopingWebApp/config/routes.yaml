@@ -4,3 +4,6 @@
 racine:
   path: /
   controller: App\Controller\RacineController::index
+
+logout:
+  path: /logout

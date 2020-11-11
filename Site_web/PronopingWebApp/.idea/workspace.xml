@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8b926514-6e00-41e9-bf74-10d4c4305746" name="Default Changelist" comment="" />
+    <list default="true" id="8b926514-6e00-41e9-bf74-10d4c4305746" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Club.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Equipe.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Joueur.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Pronostic.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/ClubRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/EquipeRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/JoueurRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/PronosticRepository.php" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -118,6 +128,9 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1jbT9Yc0xEvlQgb7tEz9PFZBIen" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -162,13 +175,17 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="352" y="148" key="IDE.errors.dialog/0.0.1536.824@0.0.1536.824" timestamp="1604074619838" />
-    <state x="604" y="332" key="NewPhpFileDialog" timestamp="1604845325258">
+    <state x="382" y="210" key="NewPhpClassDialog" timestamp="1605101757246">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="604" y="332" key="NewPhpFileDialog/0.0.1536.824@0.0.1536.824" timestamp="1604845325258" />
-    <state x="446" y="127" width="658" height="570" key="find.popup" timestamp="1604073548007">
+    <state x="382" y="210" key="NewPhpClassDialog/0.0.1536.824@0.0.1536.824" timestamp="1605101757246" />
+    <state x="604" y="332" key="NewPhpFileDialog" timestamp="1605101701668">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="446" y="127" width="658" height="570" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1604073548007" />
+    <state x="604" y="332" key="NewPhpFileDialog/0.0.1536.824@0.0.1536.824" timestamp="1605101701668" />
+    <state x="446" y="127" width="658" height="570" key="find.popup" timestamp="1605101024790">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="446" y="127" width="658" height="570" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1605101024790" />
   </component>
 </project>

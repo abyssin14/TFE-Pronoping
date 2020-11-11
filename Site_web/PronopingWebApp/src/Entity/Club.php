@@ -24,20 +24,21 @@ class Club
      */
     private $nom;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Joueur::class, mappedBy="club")
-     */
-    private $joueurs;
 
     /**
      * @ORM\OneToMany(targetEntity=Equipe::class, mappedBy="club")
      */
     private $equipes;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Joueur::class, mappedBy="club")
+     */
+    private $joueurs;
+
     public function __construct()
     {
-        $this->joueurs = new ArrayCollection();
         $this->equipes = new ArrayCollection();
+        $this->joueurs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -53,36 +54,6 @@ class Club
     public function setNom(string $nom): self
     {
         $this->nom = $nom;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Joueur[]
-     */
-    public function getJoueurs(): Collection
-    {
-        return $this->joueurs;
-    }
-
-    public function addJoueur(Joueur $joueur): self
-    {
-        if (!$this->joueurs->contains($joueur)) {
-            $this->joueurs[] = $joueur;
-            $joueur->setClub($this);
-        }
-
-        return $this;
-    }
-
-    public function removeJoueur(Joueur $joueur): self
-    {
-        if ($this->joueurs->removeElement($joueur)) {
-            // set the owning side to null (unless already changed)
-            if ($joueur->getClub() === $this) {
-                $joueur->setClub(null);
-            }
-        }
 
         return $this;
     }
@@ -111,6 +82,36 @@ class Club
             // set the owning side to null (unless already changed)
             if ($equipe->getClub() === $this) {
                 $equipe->setClub(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Joueur[]
+     */
+    public function getJoueurs(): Collection
+    {
+        return $this->joueurs;
+    }
+
+    public function addJoueur(Joueur $joueur): self
+    {
+        if (!$this->joueurs->contains($joueur)) {
+            $this->joueurs[] = $joueur;
+            $joueur->setClub($this);
+        }
+
+        return $this;
+    }
+
+    public function removeJoueur(Joueur $joueur): self
+    {
+        if ($this->joueurs->removeElement($joueur)) {
+            // set the owning side to null (unless already changed)
+            if ($joueur->getClub() === $this) {
+                $joueur->setClub(null);
             }
         }
 

@@ -27,17 +27,18 @@ class Pronostic
      */
     private $pointsRapportes;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Joueur::class, inversedBy="pronostics")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $joueur;
 
     /**
      * @ORM\ManyToOne(targetEntity=Equipe::class, inversedBy="pronostics")
      * @ORM\JoinColumn(nullable=false)
      */
     private $equipe;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Joueur::class, inversedBy="pronostics")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $joueur;
 
     public function getId(): ?int
     {
@@ -68,18 +69,6 @@ class Pronostic
         return $this;
     }
 
-    public function getJoueur(): ?Joueur
-    {
-        return $this->joueur;
-    }
-
-    public function setJoueur(?Joueur $joueur): self
-    {
-        $this->joueur = $joueur;
-
-        return $this;
-    }
-
     public function getEquipe(): ?Equipe
     {
         return $this->equipe;
@@ -88,6 +77,18 @@ class Pronostic
     public function setEquipe(?Equipe $equipe): self
     {
         $this->equipe = $equipe;
+
+        return $this;
+    }
+
+    public function getJoueur(): ?Joueur
+    {
+        return $this->joueur;
+    }
+
+    public function setJoueur(?Joueur $joueur): self
+    {
+        $this->joueur = $joueur;
 
         return $this;
     }
