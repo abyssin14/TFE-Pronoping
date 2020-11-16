@@ -2,14 +2,22 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\JoueurRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=JoueurRepository::class)
+ * @UniqueEntity(fields={"username"}, message="There is already an account with this username")
+ * @ApiResource(
+ *     normalizationContext={"groups"={"joueur:read"}},
+ *     denormalizationContext={"groups"={"joueur:write"}}
+ *     )
  */
 class Joueur implements UserInterface, \Serializable
 {
@@ -17,16 +25,19 @@ class Joueur implements UserInterface, \Serializable
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"joueur:read", "joueur:write", "club:read", "club:write", "pronostic:read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Groups({"joueur:read", "joueur:write", "club:read", "club:write", "pronostic:read"})
      */
     private $username;
 
     /**
      * @ORM\Column(type="json")
+     * @Groups({"joueur:read", "joueur:write", "club:read", "club:write", "pronostic:read"})
      */
     private $roles = [];
 
@@ -38,22 +49,25 @@ class Joueur implements UserInterface, \Serializable
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"joueur:read", "joueur:write", "club:read", "club:write", "pronostic:read"})
      */
     private $matricule;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Groups({"joueur:read", "joueur:write", "club:read", "club:write", "pronostic:read"})
      */
     private $nbPoints;
 
     /**
      * @ORM\ManyToOne(targetEntity=Club::class, inversedBy="joueurs")
-     * @ORM\JoinColumn(nullable=false)
+     * @Groups({"joueur:read", "joueur:write"})
      */
     private $club;
 
     /**
      * @ORM\OneToMany(targetEntity=Pronostic::class, mappedBy="joueur")
+     * @Groups({"joueur:read", "joueur:write"})
      */
     private $pronostics;
 

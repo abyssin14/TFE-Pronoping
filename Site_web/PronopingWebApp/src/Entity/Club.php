@@ -2,13 +2,20 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ClubRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+
 
 /**
  * @ORM\Entity(repositoryClass=ClubRepository::class)
+ * @ApiResource(
+ *     normalizationContext={"groups"={"club:read"}},
+ *     denormalizationContext={"groups"={"club:write"}}
+ * )
  */
 class Club
 {
@@ -16,24 +23,34 @@ class Club
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"equipe:read", "equipe:write", "joueur:read", "club:read", "club:write"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     *@Groups({"equipe:read", "joueur:read", "club:read", "club:write"})
      */
     private $nom;
 
 
     /**
      * @ORM\OneToMany(targetEntity=Equipe::class, mappedBy="club")
+     * @Groups({"club:read", "club:write"})
      */
     private $equipes;
 
     /**
      * @ORM\OneToMany(targetEntity=Joueur::class, mappedBy="club")
+     * @Groups({"club:read", "club:write"})
      */
     private $joueurs;
+
+    /**
+     * @ORM\Column(type="array", nullable=true)
+     * @Groups({"joueur:read", "club:read", "club:write"})
+     */
+    private $listMatricules = [];
 
     public function __construct()
     {
@@ -114,6 +131,18 @@ class Club
                 $joueur->setClub(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getListMatricules(): ?array
+    {
+        return $this->listMatricules;
+    }
+
+    public function setListMatricules(?array $listMatricules): self
+    {
+        $this->listMatricules = $listMatricules;
 
         return $this;
     }

@@ -1,9 +1,18 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
 racine:
   path: /
   controller: App\Controller\RacineController::index
 
 logout:
   path: /logout
+
+login:
+  path: /login
+  controller: App\Controller\SecurityController::login
+
+register:
+  path: /register
+  controller: App\Controller\RegistrationController::register
+
+home:
+  path: /home
+  controller: App\Controller\DefaultController::index
