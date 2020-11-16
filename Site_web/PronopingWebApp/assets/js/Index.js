@@ -1,19 +1,43 @@
 import React, { Component } from "react";
-import {getClubs, getClub, getEquipes, getEquipe, postEquipe, test, postClub} from "./utils/fetching";
+import Navbar from "reactjs-navbar";
+import "reactjs-navbar/dist/index.css";
+import {  faUser, faTrophy, faPencilAlt, faUserShield  } from "@fortawesome/free-solid-svg-icons";
+
+
 
 class Index extends Component {
-    componentDidMount(){
-        postEquipe("testAddEquipeInClub", 2, 3).then(result=>{
-                console.log(result);
-        })
 
-    }
     render() {
         return (
-            <div style={{color: "blue"}}>
-                <h1>Bienvenue sur Pronoping</h1>
-            </div>
-        );
+          <Navbar
+            menuItems={[
+              {
+                title: "Mon profil",
+                icon: faUser,
+                isAuth: true,
+              },
+              {
+                title: "Pronostiquer",
+                icon: faPencilAlt,
+                isAuth: true,
+
+              },
+              {
+                title: "Classement",
+                icon: faTrophy,
+                isAuth: true,
+
+              },
+
+              {
+                title: "Administration",
+                icon: faUserShield,
+                isAuth: true,
+
+              }
+            ]}
+          />
+        )
     }
 }
 
