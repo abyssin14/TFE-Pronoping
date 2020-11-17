@@ -16,3 +16,27 @@ register:
 home:
   path: /home
   controller: App\Controller\DefaultController::index
+
+pronostic:
+  path: /pronostic
+  controller: App\Controller\DefaultController::index
+
+profil:
+  path: /profil
+  controller: App\Controller\DefaultController::index
+
+leaderboard:
+  path: /classement
+  controller: App\Controller\DefaultController::index
+
+admin:
+  path: /admin
+  controller: App\Controller\DefaultController::index
+
+adminClub:
+  path: /admin/club
+  controller: App\Controller\DefaultController::index
+
+adminPronostics:
+  path: /admin/pronostics
+  controller: App\Controller\DefaultController::index

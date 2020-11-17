@@ -21,3 +21,16 @@
   --rm-font-size: 0.875rem;
   --sm-font-size: 0.65rem;
 }
+
+
+/* ------------- AdminClubView ---------------- */
+.clubContainer{
+  display: flex;
+  justify-content: space-between;
+}
+.gestionclubContainer{
+  height: 80vh;
+  width: 45vw;
+  margin:20px;
+  background-color: grey;
+}
