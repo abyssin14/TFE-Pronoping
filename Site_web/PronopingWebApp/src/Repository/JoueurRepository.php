@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Club;
 use App\Entity\Joueur;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;

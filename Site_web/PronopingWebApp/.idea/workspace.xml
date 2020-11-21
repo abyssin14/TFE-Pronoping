@@ -2,25 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8b926514-6e00-41e9-bf74-10d4c4305746" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../Rapports/TFE-Pronoping.rtf" beforeDir="false" afterPath="$PROJECT_DIR$/../../Rapports/TFE-Pronoping.rtf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/PronopingWebApp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PronopingWebApp.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/Index.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/Index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/components/EquipesManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/components/EquipesManagement.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/components/JoueursManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/components/JoueursManagement.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/utils/fetching.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/utils/fetching.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/views/admin/AdminClubView.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/views/admin/AdminClubView.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/DefaultController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/DefaultController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/SecurityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SecurityController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/RegistrationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/RegistrationController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Club.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Club.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Equipe.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Equipe.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Joueur.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Joueur.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Pronostic.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Pronostic.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/RegistrationFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/RegistrationFormType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/JoueurRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/JoueurRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/security/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/login.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/registration/register.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/register.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,6 +140,8 @@
       <path value="$PROJECT_DIR$/vendor/willdurand/negotiation" />
       <path value="$PROJECT_DIR$/vendor/fig/link-util" />
       <path value="$PROJECT_DIR$/vendor/nelmio/cors-bundle" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/data-fixtures" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/doctrine-fixtures-bundle" />
     </include_path>
   </component>
   <component name="ProjectId" id="1jbT9Yc0xEvlQgb7tEz9PFZBIen" />
@@ -156,7 +156,8 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../deuxième_Ephec_2TL1/Q2/Projet-devWeb/Web/siteMariage" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="yarn" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -175,6 +176,8 @@
       <workItem from="1604849352545" duration="3762000" />
       <workItem from="1605270442471" duration="13457000" />
       <workItem from="1605443588503" duration="15651000" />
+      <workItem from="1605806184947" duration="12939000" />
+      <workItem from="1605956611264" duration="9769000" />
     </task>
     <servers />
   </component>
@@ -186,6 +189,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="502" y="160" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1604074057971" />
+    <state x="502" y="168" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1605962493472">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="502" y="168" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1605962493472" />
     <state x="552" y="168" key="FileChooserDialogImpl" timestamp="1605449369299">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -202,9 +209,9 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="604" y="332" key="NewPhpFileDialog/0.0.1536.824@0.0.1536.824" timestamp="1605101701668" />
-    <state x="446" y="127" width="658" height="570" key="find.popup" timestamp="1605101024790">
+    <state x="446" y="127" width="658" height="570" key="find.popup" timestamp="1605808993208">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="446" y="127" width="658" height="570" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1605101024790" />
+    <state x="446" y="127" width="658" height="570" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1605808993208" />
   </component>
 </project>

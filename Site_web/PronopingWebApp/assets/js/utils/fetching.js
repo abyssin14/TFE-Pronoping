@@ -14,6 +14,22 @@ export async function getClub(id){
     }
 }
 
+export async function addMatriculeToClub(clubId, listMatricules){
+  const response = await fetch(HOST+"/api/clubs/"+clubId,{
+    method: 'PATCH',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/merge-patch+json',
+    },
+    body: JSON.stringify({
+        "listMatricules": listMatricules,
+
+    })
+  });
+  return response.ok;
+
+}
+
 
 export async function getEquipes(){
     const response = await fetch(HOST + "/api/equipes?page=1");

@@ -47,13 +47,14 @@ class Club
     private $joueurs;
 
     /**
-     * @ORM\Column(type="array", nullable=true)
+     * @ORM\Column(type="array", nullable=false)
      * @Groups({"joueur:read", "club:read", "club:write"})
      */
-    private $listMatricules = [];
+    private $listMatricules;
 
     public function __construct()
     {
+        $this->listMatricules = new ArrayCollection();
         $this->equipes = new ArrayCollection();
         $this->joueurs = new ArrayCollection();
     }

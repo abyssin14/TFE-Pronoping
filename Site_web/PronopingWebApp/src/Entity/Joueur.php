@@ -7,12 +7,16 @@ use App\Repository\JoueurRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\String_;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
- * @ORM\Entity(repositoryClass=JoueurRepository::class)
+ * @ORM\Entity(repositoryClass="App\Repository\JoueurRepository", repositoryClass=JoueurRepository::class)
  * @UniqueEntity(fields={"username"}, message="There is already an account with this username")
  * @ApiResource(
  *     normalizationContext={"groups"={"joueur:read"}},
@@ -70,6 +74,8 @@ class Joueur implements UserInterface, \Serializable
      * @Groups({"joueur:read", "joueur:write"})
      */
     private $pronostics;
+
+    private $entityManager;
 
     public function __construct()
     {

@@ -14,7 +14,8 @@ class RegistrationController extends AbstractController
 {
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
     {
-        $club = $this->getDoctrine()->getManager()->getRepository(Club::class)->find(3);
+        $em = $this->getDoctrine()->getManager();
+        $club = $em->getRepository(Club::class)->find(7);
         $user = new Joueur();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
@@ -24,7 +25,7 @@ class RegistrationController extends AbstractController
             $user->setPassword(
                 $passwordEncoder->encodePassword(
                     $user,
-                    $form->get('plainPassword')->getData()
+                    $form->get('password')->get('first')->getData()
                 )
             );
             $user->setUsername($form->get('username')->getData());
