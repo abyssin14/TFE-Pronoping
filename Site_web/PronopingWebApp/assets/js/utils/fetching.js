@@ -37,6 +37,16 @@ export async function getEquipes(){
         return await response.json();
     }
 }
+export async function getEquipesInClub(clubId){
+  var equipes = await getEquipes();
+  var equipesInClub = [];
+  for (let i=0; i < equipes.length; i++){
+    if(equipes[i].club.id == clubId){
+      equipesInClub.push(equipes[i])
+    }
+  }
+  return equipesInClub;
+}
 
 export async function getEquipe(id){
     const response = await fetch(HOST+"/api/equipes/"+id);
@@ -60,4 +70,20 @@ export async function postEquipe(nom, division, clubId){
         })
     });
     return response.ok;
+}
+
+export async function postRencontre(equipe, adversaire){
+  const response = await fetch(HOST + '/api/rencontres',{
+    method: 'POST',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+        "equipe": equipe,
+        "adversaire": adversaire,
+        "isFinished" : false
+    })
+  });
+  return response.ok;
 }

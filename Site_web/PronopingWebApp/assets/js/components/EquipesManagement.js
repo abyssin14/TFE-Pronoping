@@ -15,6 +15,7 @@ class EquipesManagement extends Component {
     this.addEquipe = this.addEquipe.bind(this);
   }
   componentDidMount(){
+    console.log(this.props.club)
     this.setState({
       listEquipes : this.props.club.equipes
     })

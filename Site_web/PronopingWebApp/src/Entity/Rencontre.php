@@ -26,11 +26,6 @@ class Rencontre
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="date")
-     * @Groups({"rencontre:read", "rencontre:write", "pronostic:read", "equipe:read", "equipe:write"})
-     */
-    private $date;
 
     /**
      * @ORM\Column(type="array", nullable=true)
@@ -58,9 +53,15 @@ class Rencontre
 
     /**
      * @ORM\Column(type="array", nullable=true)
-     * @Groups({"rencontre:read", "rencontre:write", "pronostic:read", "equipe:read", "equipe:write"})
+     * @Groups({"rencontre:read", "rencontre:write", "pronostic:read"})
      */
     private $score = [];
+
+    /**
+     * @ORM\Column(type="boolean")
+     * @Groups({"rencontre:read", "rencontre:write", "pronostic:read", "equipe:read", "equipe:write"})
+     */
+    private $isFinished;
 
     public function __construct()
     {
@@ -72,17 +73,6 @@ class Rencontre
         return $this->id;
     }
 
-    public function getDate(): ?\DateTimeInterface
-    {
-        return $this->date;
-    }
-
-    public function setDate(\DateTimeInterface $date): self
-    {
-        $this->date = $date;
-
-        return $this;
-    }
 
     public function getListJoueurs(): ?array
     {
@@ -158,6 +148,18 @@ class Rencontre
     public function setScore(?array $score): self
     {
         $this->score = $score;
+
+        return $this;
+    }
+
+    public function getIsFinished(): ?bool
+    {
+        return $this->isFinished;
+    }
+
+    public function setIsFinished(bool $isFinished): self
+    {
+        $this->isFinished = $isFinished;
 
         return $this;
     }
