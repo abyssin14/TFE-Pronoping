@@ -22,7 +22,7 @@ class Rencontre
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"rencontre:read", "rencontre:write", "pronostic:read", "equipe:read", "equipe:write"})
+     * @Groups({"rencontre:read", "rencontre:write", "pronostic:read", "pronostic:write", "equipe:read", "equipe:write"})
      */
     private $id;
 

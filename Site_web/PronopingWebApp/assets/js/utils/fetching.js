@@ -1,5 +1,12 @@
 const HOST = "http://localhost:8000";
 
+export async function getJoueur(id){
+    const response = await fetch(HOST+"/api/joueurs/"+id);
+    if(response.ok){
+        return await response.json();
+    }
+}
+
 export async function getClubs(){
     const response = await fetch(HOST + "/api/clubs?page=1");
     if(response.ok){
@@ -72,6 +79,12 @@ export async function postEquipe(nom, division, clubId){
     return response.ok;
 }
 
+export async function getRencontres(){
+  const response = await fetch(HOST + "/api/rencontres?page=1");
+  if(response.ok){
+      return await response.json();
+  }}
+
 export async function postRencontre(equipe, adversaire){
   const response = await fetch(HOST + '/api/rencontres',{
     method: 'POST',
@@ -83,6 +96,22 @@ export async function postRencontre(equipe, adversaire){
         "equipe": equipe,
         "adversaire": adversaire,
         "isFinished" : false
+    })
+  });
+  return response.ok;
+}
+
+export async function postPronostic(joueur, rencontre, score){
+  const response = await fetch(HOST + '/api/pronostics',{
+    method: 'POST',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+        "joueur": joueur,
+        "rencontre": rencontre,
+        "score" : score
     })
   });
   return response.ok;

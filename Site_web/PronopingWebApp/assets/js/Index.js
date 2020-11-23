@@ -12,13 +12,26 @@ import  ClassementView  from './views/ClassementView';
 import  ProfilView  from './views/ProfilView';
 import  AdminPronosticsView from './views/admin/AdminPronosticsView';
 import  AdminClubView from './views/Admin/adminClubView';
+import { getJoueur } from './utils/fetching';
 
 
 import history from "../history";
 
 
 class Index extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: null
+    };
+
+  }
   componentDidMount(){
+    getJoueur(this.props.userId).then(response =>{
+      this.setState({
+        user: response
+      });
+    })
   }
     render() {
         return (
@@ -80,9 +93,9 @@ class Index extends Component {
               ]}
             />
               <Switch>
-                <Route exact path="/pronostic" component={PronosticView} />
-                <Route exact path="/profil" component={ProfilView} />
-                <Route exact path="/classement" component={ClassementView} />
+                <Route exact path="/pronostic" component={() => <PronosticView user= {this.state.user} />} />
+                <Route exact path="/profil" component={() => <ProfilView user= {this.state.user} />} />
+                <Route exact path="/classement" component={() => <ClassementView user= {this.state.user} />} />
                 <Route exact path="/admin/pronostics" component={AdminPronosticsView} />
                 <Route exact path="/admin/club" component={AdminClubView} />
               </Switch>

@@ -29,7 +29,7 @@ class Joueur implements UserInterface, \Serializable
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"joueur:read", "joueur:write", "club:read", "club:write", "pronostic:read"})
+     * @Groups({"joueur:read", "joueur:write", "club:read", "club:write", "pronostic:read", "pronostic:write"})
      */
     private $id;
 
