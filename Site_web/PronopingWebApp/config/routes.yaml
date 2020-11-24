@@ -21,6 +21,10 @@ pronostic:
   path: /pronostic
   controller: App\Controller\DefaultController::index
 
+resultats:
+  path: /resultats
+  controller: App\Controller\DefaultController::index
+
 profil:
   path: /profil
   controller: App\Controller\DefaultController::index

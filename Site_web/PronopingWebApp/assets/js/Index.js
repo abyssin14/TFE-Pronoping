@@ -6,10 +6,11 @@ import {
 } from "react-router-dom";
 import Navbar from "reactjs-navbar";
 import "reactjs-navbar/dist/index.css";
-import {  faUser, faTrophy, faPencilAlt, faUserShield  } from "@fortawesome/free-solid-svg-icons";
+import {  faUser, faTrophy, faPencilAlt, faUserShield, faChartBar  } from "@fortawesome/free-solid-svg-icons";
 import  PronosticView  from './views/PronosticView';
 import  ClassementView  from './views/ClassementView';
 import  ProfilView  from './views/ProfilView';
+import  ResultatsView  from './views/ResultatsView';
 import  AdminPronosticsView from './views/admin/AdminPronosticsView';
 import  AdminClubView from './views/Admin/adminClubView';
 import { getJoueur } from './utils/fetching';
@@ -56,6 +57,14 @@ class Index extends Component {
                   },
                 },
                 {
+                  title: "Résultats",
+                  icon: faChartBar,
+                  isAuth: true,
+                  onClick: () => {
+                    history.push('/resultats')
+                  }
+                },
+                {
                   title: "Classement",
                   icon: faTrophy,
                   isAuth: true,
@@ -94,6 +103,7 @@ class Index extends Component {
             />
               <Switch>
                 <Route exact path="/pronostic" component={() => <PronosticView user= {this.state.user} />} />
+                <Route exact path="/resultats" component={() => <ResultatsView user= {this.state.user} />} />
                 <Route exact path="/profil" component={() => <ProfilView user= {this.state.user} />} />
                 <Route exact path="/classement" component={() => <ClassementView user= {this.state.user} />} />
                 <Route exact path="/admin/pronostics" component={AdminPronosticsView} />
