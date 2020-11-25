@@ -25,7 +25,6 @@ class Index extends Component {
     this.state = {
       user: null
     };
-
   }
   componentDidMount(){
     getJoueur(this.props.userId).then(response =>{

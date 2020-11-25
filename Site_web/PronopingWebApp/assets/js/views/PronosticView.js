@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { getRencontres } from '../utils/fetching';
-import PronosticFragment from '../components/PronosticFragment';
+import EditPronosticFragment from '../components/EditPronosticFragment';
 
 class PronosticView extends Component {
 
@@ -34,7 +34,7 @@ class PronosticView extends Component {
           <div>
             {this.state.listRencontres.map(rencontre =>{
               return(
-                <PronosticFragment rencontre={rencontre} joueur={joueur}/>
+                <EditPronosticFragment rencontre={rencontre} joueur={joueur}/>
               )
             })}
           </div>

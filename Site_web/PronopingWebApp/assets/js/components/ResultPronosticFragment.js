@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { getClub, postEquipe, postPronostic } from '../utils/fetching'
 
-class PronosticFragment extends Component {
+class ResultPronosticFragment extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -78,9 +78,7 @@ class PronosticFragment extends Component {
                 <div>{pronostic[0]}/{pronostic[1]}</div>
                 :
               <div>
-                <input type="number" placeholder="ex: 14" className="form-control w-25 h-75" onChange={this.handleInput1ScoreChange}/>
-                <input type="number" placeholder="ex: 2" className="form-control w-25 h-75" onChange={this.handleInput2ScoreChange}/>
-                <span className="btn btn-success w-10" onClick={this.addPronostic}>Valider</span>
+                Vous n'avez pas encore pronostiqué pour ce match.
               </div>
             }
 
@@ -92,4 +90,4 @@ class PronosticFragment extends Component {
 
   }
 
-export default PronosticFragment;
+export default ResultPronosticFragment;
