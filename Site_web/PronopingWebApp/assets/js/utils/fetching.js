@@ -1,3 +1,5 @@
+import { getPointsRapportes } from "./CalculPoints.js"
+
 const HOST = "http://localhost:8000";
 
 export async function getJoueur(id){
@@ -85,6 +87,13 @@ export async function getRencontres(){
       return await response.json();
   }}
 
+export async function getRencontre(id){
+      const response = await fetch(HOST+"/api/rencontres/"+id);
+      if(response.ok){
+          return await response.json();
+      }
+}
+
 export async function postRencontre(equipe, adversaire){
   const response = await fetch(HOST + '/api/rencontres',{
     method: 'POST',
@@ -111,8 +120,43 @@ export async function postPronostic(joueur, rencontre, score){
     body: JSON.stringify({
         "joueur": joueur,
         "rencontre": rencontre,
-        "score" : score
+        "score" : score,
+        "isFinished" : false
     })
   });
   return response.ok;
+}
+
+
+export async function addScoreRencontre(rencontreId, score){
+  const response = await fetch(HOST+"/api/rencontres/"+rencontreId,{
+    method: 'PATCH',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/merge-patch+json',
+    },
+    body: JSON.stringify({
+        "score": score,
+        "isFinished" : true
+    })
+  });
+  return response.ok;
+}
+
+export async function updatePoint(rencontreId){
+  const rencontre = await getRencontre(rencontreId);
+  for(let i=0; i<rencontre.pronostics.length; i++){
+    let points = getPointsRapportes(rencontre.score, rencontre.pronostics[i].score)
+    console.log(points)
+    fetch(HOST+"/api/pronostics/"+rencontre.pronostics[i].id,{
+      method: 'PATCH',
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/merge-patch+json',
+      },
+      body: JSON.stringify({
+        "pointsRapportes": points
+      })
+    })
+  }
 }

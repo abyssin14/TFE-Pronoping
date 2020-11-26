@@ -34,7 +34,12 @@ class PronosticView extends Component {
           <div>
             {this.state.listRencontres.map(rencontre =>{
               return(
-                <EditPronosticFragment rencontre={rencontre} joueur={joueur}/>
+                <div>
+                  {!rencontre.isFinished ?
+                   <EditPronosticFragment rencontre={rencontre} joueur={joueur}/>
+                    : null}
+                </div>
+
               )
             })}
           </div>

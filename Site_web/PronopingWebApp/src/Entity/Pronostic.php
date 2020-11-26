@@ -20,19 +20,19 @@ class Pronostic
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"pronostic:read", "pronostic:write", "joueur:read", "joueur:write", "rencontre:read"})
+     * @Groups({"pronostic:read", "pronostic:write", "joueur:read", "joueur:write", "rencontre:read", "equipe:read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Groups({"pronostic:read", "pronostic:write", "joueur:read", "joueur:write", "rencontre:read"})
+     * @Groups({"pronostic:read", "pronostic:write", "joueur:read", "joueur:write", "rencontre:read", "equipe:read"})
      */
     private $pointsRapportes;
 
     /**
      * @ORM\ManyToOne(targetEntity=Joueur::class, inversedBy="pronostics")
-     * @Groups({"pronostic:read", "pronostic:write", "rencontre:read"})
+     * @Groups({"pronostic:read", "pronostic:write", "rencontre:read", "equipe:read"})
      */
     private $joueur;
 
@@ -44,9 +44,15 @@ class Pronostic
 
     /**
      * @ORM\Column(type="array")
-     * @Groups({"pronostic:read", "pronostic:write", "joueur:read", "rencontre:read"})
+     * @Groups({"pronostic:read", "pronostic:write", "joueur:read", "rencontre:read", "equipe:read"})
      */
     private $score = [];
+
+    /**
+     * @ORM\Column(type="boolean")
+     * @Groups({"pronostic:read", "pronostic:write", "joueur:read", "joueur:write", "rencontre:read", "equipe:read"})
+     */
+    private $isFinished;
 
     public function getId(): ?int
     {
@@ -97,6 +103,18 @@ class Pronostic
     public function setScore(array $score): self
     {
         $this->score = $score;
+
+        return $this;
+    }
+
+    public function getIsFinished(): ?bool
+    {
+        return $this->isFinished;
+    }
+
+    public function setIsFinished(bool $isFinished): self
+    {
+        $this->isFinished = $isFinished;
 
         return $this;
     }

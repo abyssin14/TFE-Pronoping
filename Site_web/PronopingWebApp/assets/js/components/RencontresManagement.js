@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { postRencontre, getEquipe, getEquipesInClub } from '../utils/fetching'
+import AdminRencontreFragment from './AdminRencontreFragment'
 
 class RencontresManagement extends Component {
   constructor(props) {
@@ -56,7 +57,7 @@ class RencontresManagement extends Component {
       <div>
           { isLoading ? <div>chargement....</div> :
         <div>
-          <h1>Prochaines rencontres</h1>
+          <h1>Pronostics en cours</h1>
           <div>
             liste des équipes :
             {this.state.listEquipes.map(equipe =>{
@@ -64,10 +65,13 @@ class RencontresManagement extends Component {
                 <div>
                   {equipe.rencontres.length > 0 ?
                     <div>
-                      <div>Division {equipe.division} : </div>
                       { equipe.rencontres.map(rencontre =>{
                         return(
-                          <div> {equipe.nom} contre {rencontre.adversaire} </div>
+                          <div>
+                            {!rencontre.isFinished ?
+                                <AdminRencontreFragment rencontre={rencontre} equipe={equipe} />
+                              : null}
+                          </div>
                         )
                       })}
                     </div>

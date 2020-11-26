@@ -41,7 +41,7 @@ class Rencontre
 
     /**
      * @ORM\OneToMany(targetEntity=Pronostic::class, mappedBy="rencontre")
-     * @Groups({"rencontre:read", "rencontre:write"})
+     * @Groups({"rencontre:read", "rencontre:write", "equipe:read", "equipe:write"})
      */
     private $pronostics;
 

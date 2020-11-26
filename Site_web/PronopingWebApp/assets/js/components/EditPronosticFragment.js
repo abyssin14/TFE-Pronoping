@@ -14,8 +14,6 @@ class EditPronosticFragment extends Component {
     this.handleInput1ScoreChange = this.handleInput1ScoreChange.bind(this);
     this.handleInput2ScoreChange = this.handleInput2ScoreChange.bind(this);
     this.addPronostic = this.addPronostic.bind(this);
-
-
   }
 
   componentDidMount(){
