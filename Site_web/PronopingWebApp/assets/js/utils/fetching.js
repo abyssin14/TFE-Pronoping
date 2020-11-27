@@ -110,6 +110,13 @@ export async function postRencontre(equipe, adversaire){
   return response.ok;
 }
 
+export async function getPronostic(id){
+    const response = await fetch(HOST+"/api/pronostics/"+id);
+    if(response.ok){
+        return await response.json();
+    }
+}
+
 export async function postPronostic(joueur, rencontre, score){
   const response = await fetch(HOST + '/api/pronostics',{
     method: 'POST',
@@ -147,7 +154,6 @@ export async function updatePoint(rencontreId){
   const rencontre = await getRencontre(rencontreId);
   for(let i=0; i<rencontre.pronostics.length; i++){
     let points = getPointsRapportes(rencontre.score, rencontre.pronostics[i].score)
-    console.log(points)
     fetch(HOST+"/api/pronostics/"+rencontre.pronostics[i].id,{
       method: 'PATCH',
       headers: {
@@ -158,5 +164,18 @@ export async function updatePoint(rencontreId){
         "pointsRapportes": points
       })
     })
-  }
+    let joueurId = rencontre.pronostics[i].joueur.substring(13);
+    let joueur = await getJoueur(joueurId);
+    let pointsJoueur = joueur.nbPoints ? joueur.nbPoints : 0;
+    let newPointsJoueur = pointsJoueur + points;
+    fetch(HOST+"/api/joueurs/"+joueurId,{
+      method: 'PATCH',
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/merge-patch+json',
+      },
+      body: JSON.stringify({
+        "nbPoints": newPointsJoueur
+      })
+    })  }
 }

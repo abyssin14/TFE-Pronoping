@@ -35,7 +35,7 @@ class ResultPronosticFragment extends Component {
     const rencontre = this.props.rencontre;
     const isLoading = this.state.isLoading;
     const pronostic = this.state.pronostic;
-    console.log(pronostic)
+
       return (
         <div>
           { isLoading ? <div>chargement....</div> :
