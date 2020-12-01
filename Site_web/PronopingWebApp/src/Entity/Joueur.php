@@ -13,17 +13,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
-
+use Symfony\Component\Serializer\Annotation\SerializedName;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\JoueurRepository", repositoryClass=JoueurRepository::class)
- * @UniqueEntity(fields={"username"}, message="There is already an account with this username")
+ * @UniqueEntity(fields={"username"}, message="Il y a dèjà un compte avec ce nom d'utilisateur.")
  * @ApiResource(
  *     normalizationContext={"groups"={"joueur:read"}},
  *     denormalizationContext={"groups"={"joueur:write"}}
  *     )
  */
-class Joueur implements UserInterface, \Serializable
+class Joueur implements UserInterface
 {
     /**
      * @ORM\Id
@@ -51,6 +51,7 @@ class Joueur implements UserInterface, \Serializable
      */
     private $password;
 
+
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"joueur:read", "joueur:write", "club:read", "club:write", "pronostic:read"})
@@ -75,7 +76,11 @@ class Joueur implements UserInterface, \Serializable
      */
     private $pronostics;
 
-    private $entityManager;
+    /**
+     * @Groups({"joueur:write"})
+     * @SerializedName("password")
+     */
+    private $plainPassword;
 
     public function __construct()
     {
@@ -138,6 +143,18 @@ class Joueur implements UserInterface, \Serializable
         return $this;
     }
 
+    public function getPlainPassword(): string
+    {
+        return (string) $this->plainPassword;
+    }
+
+    public function setPlainPassword(string $plainPassword): self
+    {
+        $this->plainPassword = $plainPassword;
+
+        return $this;
+    }
+
     /**
      * @see UserInterface
      */
@@ -153,7 +170,7 @@ class Joueur implements UserInterface, \Serializable
     public function eraseCredentials()
     {
         // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
+        $this->plainPassword = null;
     }
 
     public function getMatricule(): ?string
@@ -222,35 +239,4 @@ class Joueur implements UserInterface, \Serializable
         return $this;
     }
 
-    /**
-     * @inheritDoc
-     */
-    public function serialize()
-    {
-        return serialize([
-            $this->id,
-            $this->club,
-            $this->pronostics,
-            $this->nbPoints,
-            $this->matricule,
-            $this->password,
-            $this->username
-        ]);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function unserialize($serialized)
-    {
-        list(
-            $this->id,
-            $this->club,
-            $this->pronostics,
-            $this->nbPoints,
-            $this->matricule,
-            $this->password,
-            $this->username
-            ) = unserialize($serialized,['allowed_classes' => false]);
-    }
 }
