@@ -94,7 +94,7 @@ export async function getRencontre(id){
       }
 }
 
-export async function postRencontre(equipe, adversaire){
+export async function postRencontre(equipe, adversaire, date){
   const response = await fetch(HOST + '/api/rencontres',{
     method: 'POST',
     headers: {
@@ -104,6 +104,7 @@ export async function postRencontre(equipe, adversaire){
     body: JSON.stringify({
         "equipe": equipe,
         "adversaire": adversaire,
+        "date" : date,
         "isFinished" : false
     })
   });
@@ -178,4 +179,35 @@ export async function updatePoint(rencontreId){
         "nbPoints": newPointsJoueur
       })
     })  }
+}
+
+export async function updatePreviousPronostics(joueur){
+  var tabPronostics = joueur.pronostics;
+  for(let i=0; i < tabPronostics.length; i++){
+    if(!tabPronostics[i].isFinished){
+      let rencontre = await getRencontre(tabPronostics[i].rencontre.substring(16))
+      if(rencontre.isFinished){
+        closePronostic(tabPronostics[i].id).then(response => {
+          if(!response){
+            return false
+          }
+        })
+      }
+    }
+  }
+  return true
+}
+
+export async function closePronostic(pronosticId){
+  const response = await fetch(HOST+"/api/pronostics/"+pronosticId,{
+    method: 'PATCH',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/merge-patch+json',
+    },
+    body: JSON.stringify({
+        "isFinished" : true
+    })
+  });
+  return response.ok;
 }

@@ -52,7 +52,6 @@ class AdminRencontreFragment extends Component {
   render(){
     const equipe = this.props.equipe;
     const rencontre = this.props.rencontre;
-    console.log(rencontre)
     return (
       <div style={{display:'inline-flex', marginBottom:'5px'}}>
         <div style={{width: '300px'}}>

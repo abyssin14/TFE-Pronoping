@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getRencontres } from '../utils/fetching';
+import { getRencontres, updatePreviousPronostics } from '../utils/fetching';
 import EditPronosticFragment from '../components/EditPronosticFragment';
 
 class PronosticView extends Component {
@@ -13,7 +13,6 @@ class PronosticView extends Component {
   }
 
   componentDidMount(){
-    console.log(this.props.user)
     getRencontres().then( response =>{
       console.log(response);
       this.setState({
@@ -21,6 +20,20 @@ class PronosticView extends Component {
         isLoading: false
       });
     });
+  }
+
+  renderRencontre(){
+    var listRencontreNotFinished = []
+    for(let r=0; r < this.state.listRencontres.length; r++){
+      if(!this.state.listRencontres[r].isFinished){
+        listRencontreNotFinished.push(this.state.listRencontres[r])
+      }
+    }
+    var html = new Array();
+    for(let i=0; i < listRencontreNotFinished.length; i++){
+      html.push(<EditPronosticFragment rencontre={listRencontreNotFinished[i]} joueur={this.props.user}/>)
+    }
+    return html;
   }
 
   render(){
@@ -32,16 +45,7 @@ class PronosticView extends Component {
         <div>
           <h1>Pronostic Page!</h1>
           <div>
-            {this.state.listRencontres.map(rencontre =>{
-              return(
-                <div>
-                  {!rencontre.isFinished ?
-                   <EditPronosticFragment rencontre={rencontre} joueur={joueur}/>
-                    : null}
-                </div>
-
-              )
-            })}
+            {this.renderRencontre()}
           </div>
         </div>
       }

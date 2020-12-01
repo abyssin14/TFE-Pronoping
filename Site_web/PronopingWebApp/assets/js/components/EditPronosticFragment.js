@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getClub, postEquipe, postPronostic } from '../utils/fetching'
+import { getClub, postEquipe, postPronostic, updatePreviousPronostics } from '../utils/fetching'
 
 class EditPronosticFragment extends Component {
   constructor(props) {
@@ -52,11 +52,16 @@ class EditPronosticFragment extends Component {
       isLoading: true
     })
     postPronostic(this.props.joueur, this.props.rencontre, this.state.tabScore).then(response =>{
-      console.log(response)
       if(response){
         this.setState({
-          isLoading: false,
           pronostic: this.state.tabScore
+        })
+        updatePreviousPronostics(this.props.joueur).then(response =>{
+          if(response){
+            this.setState({
+              isLoading: false,
+            })
+          }
         })
       }
     })

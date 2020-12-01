@@ -63,6 +63,12 @@ class Rencontre
      */
     private $isFinished;
 
+    /**
+     * @ORM\Column(type="date")
+     * @Groups({"rencontre:read", "rencontre:write", "pronostic:read", "equipe:read", "equipe:write"})
+     */
+    private $date;
+
     public function __construct()
     {
         $this->pronostics = new ArrayCollection();
@@ -160,6 +166,18 @@ class Rencontre
     public function setIsFinished(bool $isFinished): self
     {
         $this->isFinished = $isFinished;
+
+        return $this;
+    }
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(\DateTimeInterface $date): self
+    {
+        $this->date = $date;
 
         return $this;
     }

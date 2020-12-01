@@ -1,6 +1,12 @@
 import React, { Component } from "react";
+import DatePicker from "react-datepicker";
+import { registerLocale } from  "react-datepicker";
+import fr from 'date-fns/locale/fr';
+import "react-datepicker/dist/react-datepicker.css";
 import { postRencontre, getEquipe, getEquipesInClub } from '../utils/fetching'
 import AdminRencontreFragment from './AdminRencontreFragment'
+
+registerLocale('fr', fr)
 
 class RencontresManagement extends Component {
   constructor(props) {
@@ -9,16 +15,20 @@ class RencontresManagement extends Component {
       listEquipes: [],
       isLoading: false,
       equipeId: null,
-      adversaire: ""
+      adversaire: "",
+      date: null
     };
     this.handleInputAdversaireChange = this.handleInputAdversaireChange.bind(this);
     this.handleInputEquipeChange = this.handleInputEquipeChange.bind(this);
     this.addRencontre = this.addRencontre.bind(this);
+    this.setDate = this.setDate.bind(this);
+
   }
   componentDidMount(){
     this.setState({
       listEquipes : this.props.equipes
     })
+    console.log(this.props.equipes.rencontres)
   };
   handleInputAdversaireChange(event){
     this.setState({
@@ -30,13 +40,19 @@ class RencontresManagement extends Component {
       equipeId: event.target.value
     })
   }
+  setDate(date){
+    var formatDate = new Date (date.getTime() +4*3600*1000 /*4 hrs in ms*/ )
+    this.setState({
+      date: formatDate
+    })
+  }
   async addRencontre(){
     var equipe = await getEquipe(this.state.equipeId)
     this.setState({
       isLoading: true,
       listEquipes: [],
     })
-    postRencontre(equipe,this.state.adversaire).then(response =>{
+    postRencontre(equipe,this.state.adversaire, this.state.date).then(response =>{
       console.log(response)
       if(response){
         getEquipesInClub(7).then(result => {
@@ -92,6 +108,7 @@ class RencontresManagement extends Component {
               }
             </select>
             <input type="text" placeholder="Nom de l'équipe adverse" className="form-control w-50 h-75" onChange={this.handleInputAdversaireChange}/>
+            <DatePicker locale="fr" className="form-control" selected={this.state.date} onChange={date => this.setDate(date)} /> <br></br>
             <span className="btn btn-success w-10" onClick={this.addRencontre}>Ajouter</span>
           </div>
         </div>
