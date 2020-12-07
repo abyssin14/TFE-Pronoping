@@ -32,7 +32,6 @@ class Navigation extends React.Component {
      isAuth: isAuth,
      isLoading: false,
    })
-   console.log(isAuth)
  }
  async updateNavigation(){
    this.setState({
@@ -46,12 +45,27 @@ class Navigation extends React.Component {
           <NavigationContainer>
             {isAuth ?
               <Drawer.Navigator initialRouteName="Home">
-                <Drawer.Screen name="Home" component={HomeScreen} initialParams={{ updateNavigation: this.updateNavigation }} />
+                <Drawer.Screen name="Home" component={HomeScreen} initialParams={{ updateNavigation: this.updateNavigation.bind(this) }} />
                 <Drawer.Screen name="Pronostic" component={PronosticScreen} />
               </Drawer.Navigator>
               :
-              <Stack.Navigator>
-                <Stack.Screen name="Login" component={LoginScreen} initialParams={{ updateNavigation: this.updateNavigation }} />
+              <Stack.Navigator
+                screenOptions={{
+                  headerStyle: {
+                    backgroundColor: 'red',
+                  },
+                  headerTintColor: '#fff',
+                  headerTitleStyle: {
+                    fontWeight: 'bold',
+                  },
+                }}
+              >
+                <Stack.Screen
+                  name="Login"
+                  component={LoginScreen}
+                  initialParams={{ updateNavigation: this.updateNavigation.bind(this) }}
+                  options={{ title: 'Pronoping' }}
+                  />
               </Stack.Navigator>
             }
         </NavigationContainer>
