@@ -17,7 +17,6 @@ export default class App extends React.Component {
   constructor(props) {
    super(props)
    this.state = {
-    isAuth: null,
     isLoading: true
   }
  }
@@ -28,7 +27,7 @@ export default class App extends React.Component {
 
   render(){
     return (
-        <Navigation isAuth={this.state.isAuth} />
+        <Navigation />
     );
   }
 }

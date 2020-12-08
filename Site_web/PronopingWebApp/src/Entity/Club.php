@@ -23,7 +23,7 @@ class Club
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"equipe:read", "equipe:write", "joueur:read", "club:read", "club:write"})
+     * @Groups({"equipe:read", "equipe:write", "joueur:read", "joueur:write", "club:read", "club:write"})
      */
     private $id;
 

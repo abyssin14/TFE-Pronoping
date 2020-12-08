@@ -235,3 +235,36 @@ export async function connection(username, password){
   const body = await response.text()
   return body.length == 51116
 }
+
+export async function signup(username, password, matricule){
+  var club = await getClub(7);
+  const listMatricules = club.listMatricules;
+  var matriculeFound = false;
+  for(let i=0; i<listMatricules.length; i++){
+    if(listMatricules[i] == matricule){
+      matriculeFound = true
+    }
+  }
+  if(!matriculeFound){
+    return "matriculeError"
+  }
+  for(let i=0; i < club.joueurs.length; i++){
+    if(club.joueurs[i].username == username){
+      return "usernameError"
+    }
+  }
+  const response = await fetch(HOST+'/api/joueurs',{
+    method: 'POST',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+        "username": username,
+        "password": password,
+        "matricule" : matricule,
+        "club" : club,
+    })
+  });
+  return response.ok;
+}

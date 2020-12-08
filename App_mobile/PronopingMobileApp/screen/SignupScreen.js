@@ -1,44 +1,46 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableWithoutFeedback, TouchableOpacity, Keyboard, ActivityIndicator, Dimensions  } from 'react-native';
-import { connection } from '../utils/fetching'
+import { signup } from '../utils/fetching'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Navigation from '../Navigation'
 
-class LoginScreen extends React.Component {
+class SignupScreen extends React.Component {
   constructor(props) {
    super(props)
    this.state = {
     username: null,
     password: null,
+    confirmPassword: null,
+    matricule: null,
     isLoading: false,
-    secondTextInput: null
+    secondTextInput: null,
+    fourthTextInput: null,
+    thirdTextInput: null,
   }
  }
-handleConnectionClick = async ()=>{
+handleSignupClick = async ()=>{
   this.setState({
     isLoading: true
   })
-  var isAuth = await connection(this.state.username, this.state.password)
-  if(isAuth){
-    this.setIsAuth(true)
-    this.props.route.params.updateNavigation()
-  }else{
-    alert("Nom d'utilisateur ou mot de passe incorrect !")
-  }
-  this.setState({
-    isLoading: false
-  })
+    const response = await signup(this.state.username, this.state.password, this.state.matricule);
+    this.setState({
+      isLoading: false
+    })
+    if(response==true){
+      this.props.navigation.goBack()
+      console.log("Compte créé !")
+    }else{
+      if(response == "matriculeError"){
+        alert('Matricule introuvable !')
+      }else{
+        if(response == "usernameError"){
+          alert("Nom d'utilisateur plus disponible !")
+        }else{
+          alert('erreur dans la requete')
+        }
+      }
+    }
 }
- async setIsAuth(value){
-   try {
-     const jsonValue = JSON.stringify(value)
-     await AsyncStorage.setItem('isAuth', jsonValue)
-   } catch(e) {
-     console.log('Error.')
-   }
-
-   console.log('Done.')
- }
 
     render() {
       const isLoading = this.state.isLoading;
@@ -54,14 +56,13 @@ handleConnectionClick = async ()=>{
           style={styles.container}
         >
         <View style={styles.header}>
-          <Text style={styles.headerText}>Bienvenue sur Pronoping</Text>
+          <Text style={styles.headerText}>Inscription</Text>
         </View>
-        <Text style={styles.titleText}>Entrez vos identifiants</Text>
           <TextInput
             style={styles.input}
             value={this.state.username}
             onChangeText={(username) => this.setState({username})}
-            placeholder="Votre nom d'utilisateur"
+            placeholder="Nom d'utilisateur"
             placeholderTextColor='grey'
             returnKeyType = {"next"}
             onSubmitEditing={() => { this.secondTextInput.focus(); }}
@@ -72,25 +73,39 @@ handleConnectionClick = async ()=>{
             style={styles.input}
             value={this.state.password}
             onChangeText={(password) => this.setState({password})}
-            placeholder='Votre mot de passe'
+            placeholder='Mot de passe'
+            placeholderTextColor='grey'
+            returnKeyType = {"next"}
+            onSubmitEditing={() => { this.thirdTextInput.focus(); }}
+          />
+          <TextInput
+            ref={(input) => { this.thirdTextInput = input; }}
+            style={styles.input}
+            value={this.state.confirmPassword}
+            onChangeText={(confirmPassword) => this.setState({confirmPassword})}
+            placeholder='Confirmer le mot de passe'
+            placeholderTextColor='grey'
+            returnKeyType = {"next"}
+            onSubmitEditing={() => { this.fourthTextInput.focus(); }}
+          />
+          <TextInput
+            ref={(input) => { this.fourthTextInput = input; }}
+            style={styles.input}
+            value={this.state.matricule}
+            onChangeText={(matricule) => this.setState({matricule})}
+            placeholder='Matricule'
             placeholderTextColor='grey'
             returnKeyType = {"go"}
-            onSubmitEditing={this.handleConnectionClick}
+            onSubmitEditing={this.handleSignupClick}
           />
           <TouchableOpacity
-            onPress={this.handleConnectionClick}
+            onPress={this.handleSignupClick}
           >
             <View style={styles.loginButton}>
-              <Text style={styles.loginButtonText}>Se connecter</Text>
+              <Text style={styles.loginButtonText}>S'inscrire</Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity
-            onPress={()=>this.props.navigation.navigate('Signup')}
-          >
-            <View style={styles.singupButton}>
-              <Text style={styles.signupButtonText}>S'inscrire</Text>
-            </View>
-          </TouchableOpacity>
+
         </View>
         </TouchableWithoutFeedback>
       }
@@ -116,7 +131,7 @@ const styles = StyleSheet.create({
     justifyContent:'center'
   },
   header:{
-    marginTop:80,
+    marginTop:30,
     marginBottom: 30,
     justifyContent:'center'
   },
@@ -167,4 +182,4 @@ const styles = StyleSheet.create({
     fontWeight:'bold'
   }
 });
-export default LoginScreen
+export default SignupScreen

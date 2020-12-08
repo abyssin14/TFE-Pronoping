@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, Platform } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, Platform, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import 'react-native-gesture-handler';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -10,6 +10,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import HomeScreen from './screen/HomeScreen'
 import PronosticScreen from './screen/PronosticScreen'
 import LoginScreen from './screen/LoginScreen'
+import SignupScreen from './screen/SignupScreen'
+
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -59,6 +61,7 @@ class Navigation extends React.Component {
                     fontWeight: 'bold',
                   },
                 }}
+
               >
                 <Stack.Screen
                   name="Login"
@@ -66,6 +69,11 @@ class Navigation extends React.Component {
                   initialParams={{ updateNavigation: this.updateNavigation.bind(this) }}
                   options={{ title: 'Pronoping' }}
                   />
+                  <Stack.Screen
+                    name="Signup"
+                    component={SignupScreen}
+                    options={{ title: "Pronoping",headerBackTitle:'Retour' }}
+                    />
               </Stack.Navigator>
             }
         </NavigationContainer>
