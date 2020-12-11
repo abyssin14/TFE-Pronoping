@@ -16,6 +16,17 @@ export async function getJoueur(id){
     }
 }
 
+export async function getJoueurByUsername(username){
+  var listJoueurs = await getJoueurs();
+  for(let i=0; i<listJoueurs.length; i++){
+
+    if(listJoueurs[i].username == username){
+      return listJoueurs[i]
+    }
+  }
+  return false
+}
+
 export async function getClubs(){
     const response = await fetch(HOST + "/api/clubs?page=1");
     if(response.ok){

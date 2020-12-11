@@ -2,45 +2,62 @@ import React from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableWithoutFeedback, TouchableOpacity, Keyboard, ActivityIndicator, Dimensions  } from 'react-native';
 import { signup } from '../utils/fetching'
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Navigation from '../Navigation'
 
 class SignupScreen extends React.Component {
   constructor(props) {
    super(props)
    this.state = {
-    username: null,
-    password: null,
-    confirmPassword: null,
-    matricule: null,
+    username: '',
+    password: '',
+    confirmPassword: '',
+    matricule: '',
     isLoading: false,
     secondTextInput: null,
     fourthTextInput: null,
     thirdTextInput: null,
   }
  }
-handleSignupClick = async ()=>{
-  this.setState({
-    isLoading: true
-  })
-    const response = await signup(this.state.username, this.state.password, this.state.matricule);
-    this.setState({
-      isLoading: false
-    })
-    if(response==true){
-      this.props.navigation.goBack()
-      console.log("Compte créé !")
-    }else{
-      if(response == "matriculeError"){
-        alert('Matricule introuvable !')
-      }else{
-        if(response == "usernameError"){
-          alert("Nom d'utilisateur plus disponible !")
+ checkForm(){
+   if(this.state.username == '' || this.state.password == '' || this.state.confirmPassword == '' || this.state.matricule == ''){
+     alert('Veuillez remplir tous les champs.')
+     return false
+   }
+   if(this.state.password.length < 6){
+     alert('Votre mot de passe doit comporter au moins 6 caractère.')
+     return false
+   }
+   if(this.state.password !== this.state.confirmPassword){
+     alert('Veuillez entrer deux mots de passe identiques.')
+     return false
+   }
+   return true
+ }
+ handleSignupClick = async ()=>{
+    var check = this.checkForm();
+    if(check){
+      this.setState({
+        isLoading: true
+      })
+        const response = await signup(this.state.username, this.state.password, this.state.matricule);
+        this.setState({
+          isLoading: false
+        })
+        if(response==true){
+          this.props.navigation.goBack()
+          console.log("Compte créé !")
         }else{
-          alert('erreur dans la requete')
+          if(response == "matriculeError"){
+            alert('Matricule introuvable !')
+          }else{
+            if(response == "usernameError"){
+              alert("Nom d'utilisateur plus disponible !")
+            }else{
+              alert('erreur dans la requete')
+            }
+          }
         }
-      }
     }
-}
+  }
 
     render() {
       const isLoading = this.state.isLoading;
@@ -67,6 +84,7 @@ handleSignupClick = async ()=>{
             returnKeyType = {"next"}
             onSubmitEditing={() => { this.secondTextInput.focus(); }}
             blurOnSubmit={false}
+            autoCompleteType="username"
           />
           <TextInput
             ref={(input) => { this.secondTextInput = input; }}
@@ -77,6 +95,8 @@ handleSignupClick = async ()=>{
             placeholderTextColor='grey'
             returnKeyType = {"next"}
             onSubmitEditing={() => { this.thirdTextInput.focus(); }}
+            secureTextEntry={true}
+            autoCompleteType="password"
           />
           <TextInput
             ref={(input) => { this.thirdTextInput = input; }}
@@ -87,6 +107,9 @@ handleSignupClick = async ()=>{
             placeholderTextColor='grey'
             returnKeyType = {"next"}
             onSubmitEditing={() => { this.fourthTextInput.focus(); }}
+            secureTextEntry={true}
+            autoCompleteType="password"
+
           />
           <TextInput
             ref={(input) => { this.fourthTextInput = input; }}
@@ -131,8 +154,8 @@ const styles = StyleSheet.create({
     justifyContent:'center'
   },
   header:{
-    marginTop:30,
-    marginBottom: 30,
+    marginTop:20,
+    marginBottom: 15,
     justifyContent:'center'
   },
   headerText:{

@@ -10,29 +10,13 @@ class HomeScreen extends React.Component {
     data: null
   }
  }
- handleLogoutClick = async ()=>{
-   try {
-     await AsyncStorage.removeItem('isAuth')
-   } catch(e) {
-     // remove error
-   }
-   console.log('Done.')
-   this.props.route.params.updateNavigation()
 
- }
     render() {
       return(
         <View>
         <Header navigation= {this.props.navigation}/>
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <View style={{ alignItems: 'center', justifyContent: 'center' }}>
           <Text>Bienvenue sur Pronoping</Text>
-          <TouchableOpacity
-            onPress={this.handleLogoutClick}
-          >
-            <View>
-              <Text> Se déconnecter </Text>
-            </View>
-          </TouchableOpacity>
         </View>
       </View>
     )

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getClub, postEquipe, postPronostic, updatePreviousPronostics } from '../utils/fetching'
+import { postPronostic, updatePreviousPronostics } from '../utils/fetching'
 
 class EditPronosticFragment extends Component {
   constructor(props) {

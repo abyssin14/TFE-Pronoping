@@ -8,6 +8,7 @@ class PronosticView extends Component {
     super(props);
     this.state = {
       isLoading: true,
+      listRencontres: []
     };
 
   }
