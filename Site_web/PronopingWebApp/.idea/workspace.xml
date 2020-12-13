@@ -2,23 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8b926514-6e00-41e9-bf74-10d4c4305746" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/PronopingWebApp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PronopingWebApp.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../App_mobile/PronopingMobileApp/Navigation.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../App_mobile/PronopingMobileApp/Navigation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../App_mobile/PronopingMobileApp/component/EditPronosticItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../App_mobile/PronopingMobileApp/component/EditPronosticItem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../App_mobile/PronopingMobileApp/component/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../App_mobile/PronopingMobileApp/component/Header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../App_mobile/PronopingMobileApp/screen/LoginScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../App_mobile/PronopingMobileApp/screen/LoginScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../App_mobile/PronopingMobileApp/screen/PronosticScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../App_mobile/PronopingMobileApp/screen/PronosticScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../App_mobile/PronopingMobileApp/screen/SignupScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../App_mobile/PronopingMobileApp/screen/SignupScreen.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/components/EquipesManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/components/EquipesManagement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/components/JoueursManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/components/JoueursManagement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/utils/fetching.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/utils/fetching.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/views/admin/AdminClubView.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/views/admin/AdminClubView.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/RegistrationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/RegistrationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Club.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Club.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/Index.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/Index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/components/ResultPronosticFragment.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/components/ResultPronosticFragment.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/styles/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/routes.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/Club.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Joueur.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Joueur.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/RegistrationFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/RegistrationFormType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/JoueurRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/JoueurRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/registration/register.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/register.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,6 +175,7 @@
       <workItem from="1605443588503" duration="15651000" />
       <workItem from="1605806184947" duration="12939000" />
       <workItem from="1605956611264" duration="10058000" />
+      <workItem from="1607873743124" duration="327000" />
     </task>
     <servers />
   </component>

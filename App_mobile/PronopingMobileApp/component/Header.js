@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/Foundation'
+import { COLOR } from '../utils/Styling'
 
 class Header extends React.Component {
   constructor(props) {
@@ -23,7 +24,7 @@ class Header extends React.Component {
 const styles = StyleSheet.create({
   header: {
     paddingTop:5,
-    backgroundColor: 'green',
+    backgroundColor: COLOR.orange,
     height: 70,
     justifyContent:'center',
     alignItems: 'center',
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
     fontSize :18
   },
   menuOpen: {
-    backgroundColor: 'green',
+    backgroundColor: COLOR.orange,
     position: 'absolute',
     right: 25,
     top:25

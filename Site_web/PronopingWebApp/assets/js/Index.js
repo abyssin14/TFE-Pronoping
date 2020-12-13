@@ -23,91 +23,106 @@ class Index extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: null
+      user: null,
+      isLoading: true
     };
   }
   componentDidMount(){
     getJoueur(this.props.userId).then(response =>{
       this.setState({
-        user: response
+        user: response,
+        isLoading: false
       });
+      console.log(this.state.user)
     })
   }
+  isUser(){
+    return (this.state.user.roles[0] == 'ROLE_USER')
+  }
+  isAdmin(){
+    return (this.state.user.roles[1] == 'ROLE_ADMIN')
+  }
     render() {
+      const isLoading = this.state.isLoading;
         return (
-
           <div>
-            <Navbar
-              menuItems={[
-                {
-                  title: "Mon profil",
-                  icon: faUser,
-                  isAuth: true,
-                  onClick: () => {
-                    history.push('/profil')
-                  },
-                },
-                {
-                  title: "Pronostiquer",
-                  icon: faPencilAlt,
-                  isAuth: true,
-                  onClick: () => {
-                    history.push('/pronostic')
-                  },
-                },
-                {
-                  title: "Résultats",
-                  icon: faChartBar,
-                  isAuth: true,
-                  onClick: () => {
-                    history.push('/resultats')
-                  }
-                },
-                {
-                  title: "Classement",
-                  icon: faTrophy,
-                  isAuth: true,
-                  onClick: () => {
-                    history.push('/classement')
-                  },
-                },
-
-                {
-                  title: "Administration",
-                  icon: faUserShield,
-                  isAuth: true,
-                  onClick: () => {
-                    history.push('/admin/pronostics')
-                  },
-                  subItems: [
+            {isLoading ? null
+              :
+              <div>
+                <Navbar
+                  menuItems={[
                     {
-                      title: "Gestion des pronostics",
+                      title: "Mon profil",
+                      icon: faUser,
+                      isAuth: this.isUser(),
+                      onClick: () => {
+                        history.push('/user/profil')
+                      },
+                    },
+                    {
+                      title: "Pronostiquer",
+                      icon: faPencilAlt,
+                      isAuth: this.isUser(),
+                      onClick: () => {
+                        history.push('/user/pronostic')
+                      },
+                    },
+                    {
+                      title: "Résultats",
+                      icon: faChartBar,
+                      isAuth: this.isUser(),
+                      onClick: () => {
+                        history.push('/user/resultats')
+                      }
+                    },
+                    {
+                      title: "Classement",
                       icon: faTrophy,
-                      isAuth: true,
+                      isAuth: this.isUser(),
+                      onClick: () => {
+                        history.push('/user/classement')
+                      },
+                    },
+
+                    {
+                      title: "Administration",
+                      icon: faUserShield,
+                      isAuth: this.isAdmin(),
                       onClick: () => {
                         history.push('/admin/pronostics')
                       },
-                    },
-                    {
-                      title: "Gestion du club",
-                      icon: faTrophy,
-                      isAuth: true,
-                      onClick: () => {
-                        history.push('/admin/club')
-                      },
-                    },
-                  ],
-                }
-              ]}
-            />
-              <Switch>
-                <Route exact path="/pronostic" component={() => <PronosticView user= {this.state.user} />} />
-                <Route exact path="/resultats" component={() => <ResultatsView user= {this.state.user} />} />
-                <Route exact path="/profil" component={() => <ProfilView user= {this.state.user} />} />
-                <Route exact path="/classement" component={() => <ClassementView user= {this.state.user} />} />
-                <Route exact path="/admin/pronostics" component={AdminPronosticsView} />
-                <Route exact path="/admin/club" component={AdminClubView} />
-              </Switch>
+                      subItems: [
+                        {
+                          title: "Gestion des pronostics",
+                          icon: faTrophy,
+                          isAuth: this.isAdmin(),
+                          onClick: () => {
+                            history.push('/admin/pronostics')
+                          },
+                        },
+                        {
+                          title: "Gestion du club",
+                          icon: faTrophy,
+                          isAuth: this.isAdmin(),
+                          onClick: () => {
+                            history.push('/admin/club')
+                          },
+                        },
+                      ],
+                    }
+                  ]}
+                />
+                  <Switch>
+                    <Route exact path="/user/pronostic" component={() => <PronosticView user= {this.state.user} />} />
+                    <Route exact path="/user/resultats" component={() => <ResultatsView user= {this.state.user} />} />
+                    <Route exact path="/user/profil" component={() => <ProfilView user= {this.state.user} />} />
+                    <Route exact path="/user/classement" component={() => <ClassementView user= {this.state.user} />} />
+                    <Route exact path="/admin/pronostics" component={AdminPronosticsView} />
+                    <Route exact path="/admin/club" component={AdminClubView} />
+                  </Switch>
+                </div>
+            }
+
           </div>
         )
     }

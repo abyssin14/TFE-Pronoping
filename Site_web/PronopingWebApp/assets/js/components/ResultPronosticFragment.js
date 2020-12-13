@@ -1,14 +1,10 @@
 import React, { Component } from "react";
-import { getClub, postEquipe, postPronostic } from '../utils/fetching'
 
 class ResultPronosticFragment extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isLoading: false,
-      score1: null,
-      score2: null,
-      tabScore: [],
       pronostic: null
     };
   }

@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableWithoutFeedback, TouchableOpacity, Keyboard, ActivityIndicator, Dimensions, ScrollView  } from 'react-native';
 import { connection } from '../utils/fetching'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { COLOR } from '../utils/Styling'
 
 class LoginScreen extends React.Component {
   constructor(props) {
@@ -47,7 +48,7 @@ handleConnectionClick = async ()=>{
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       {isLoading?
         <View style={styles.loader}>
-          <ActivityIndicator size="large" color="red" />
+          <ActivityIndicator size="large" color={COLOR.orange} />
         </View>
         :
         <TouchableWithoutFeedback accessible={false} onPress={() => Keyboard.dismiss()}>
@@ -128,7 +129,7 @@ const styles = StyleSheet.create({
   headerText:{
     fontWeight:'bold',
     fontSize: 20,
-    color: 'red'
+    color: COLOR.orange
   },
   titleText:{
     color:"white",
@@ -147,7 +148,7 @@ const styles = StyleSheet.create({
     marginTop:40,
     width: windowWidth/2,
     height:30,
-    backgroundColor: 'red',
+    backgroundColor: COLOR.orange,
     borderRadius: 50,
     justifyContent: 'center',
     alignItems: 'center',
@@ -167,7 +168,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   signupButtonText:{
-    color:'red',
+    color: COLOR.orange,
     fontSize:16,
     fontWeight:'bold'
   }

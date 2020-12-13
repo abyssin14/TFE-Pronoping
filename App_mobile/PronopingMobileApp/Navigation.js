@@ -1,15 +1,16 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, Platform, Button } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, Platform, Button, ScrollView, Dimensions, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import 'react-native-gesture-handler';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import { COLOR } from "./utils/Styling"
 import { getJoueurByUsername } from './utils/fetching'
 
 import HomeScreen from './screen/HomeScreen'
 import PronosticScreen from './screen/PronosticScreen'
+import ResultatsScreen from './screen/ResultatsScreen'
 import LoginScreen from './screen/LoginScreen'
 import SignupScreen from './screen/SignupScreen'
 
@@ -67,21 +68,24 @@ class Navigation extends React.Component {
    }
   customDrawerContent(props) {
     return (
-      <DrawerContentScrollView {...props} style={{
-          backgroundColor:'black'
-        }}>
-        <DrawerItemList {...props}
-          inactiveTintColor='white'
-          activeTintColor='black'
-          activeBackgroundColor='green'
-
-          />
-          <DrawerItem
-            label="Se déconnecter"
-            onPress={this.handleLogoutClick}
-            inactiveTintColor='red'
-          />
-      </DrawerContentScrollView>
+          <View>
+            <SafeAreaView style={styles.navigationContainer}>
+              <View style={{flexDirection:'row', marginBottom:10}}>
+                <Image source={require('./assets/PronopingLogo.png')} style={{ width: 80, height: 50 }}/>
+                <Text style={[styles.navigationTitleOrange,{marginLeft: 10}]}>P</Text><Text style={styles.navigationTitle}>rono</Text><Text style={styles.navigationTitleOrange}>P</Text><Text style={styles.navigationTitle}>ing</Text>
+              </View>
+              <DrawerItemList {...props}
+                inactiveTintColor= 'white'
+                activeTintColor='white'
+                activeBackgroundColor={COLOR.orange}
+              />
+              <DrawerItem
+                label="Se déconnecter"
+                onPress={this.handleLogoutClick}
+                inactiveTintColor='red'
+              />
+            </SafeAreaView>
+          </View>
     );
   }
   render(){
@@ -94,14 +98,14 @@ class Navigation extends React.Component {
               <Drawer.Navigator
                  drawerContent={this.customDrawerContent.bind(this)}
                  >
-                <Drawer.Screen name="Home" component={HomeScreen} />
-                <Drawer.Screen name="Pronostic" component={PronosticScreen} initialParams={{ user: user }}/>
+                <Drawer.Screen name="Pronostic" component={PronosticScreen} initialParams={{ user: user }} />
+                <Drawer.Screen name="Resultats" component={ResultatsScreen} initialParams={{ user: user }} />
               </Drawer.Navigator>
               :
               <Stack.Navigator
                 screenOptions={{
                   headerStyle: {
-                    backgroundColor: 'red',
+                    backgroundColor: COLOR.orange,
                   },
                   headerTintColor: '#fff',
                   headerTitleStyle: {
@@ -129,11 +133,27 @@ class Navigation extends React.Component {
   }
 }
 
-
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#232531'
   },
+  navigationContainer:{
+    backgroundColor: COLOR.grey,
+    height: windowHeight
+  },
+  navigationTitle:{
+    marginTop:13,
+    fontWeight:'bold',
+    fontSize: 20,
+    color: 'white'
+  },
+  navigationTitleOrange:{
+    marginTop:8,
+    fontWeight:'bold',
+    fontSize: 25,
+    color: COLOR.orange
+  }
 });
 export default Navigation

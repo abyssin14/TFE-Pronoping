@@ -14,23 +14,23 @@ register:
   controller: App\Controller\RegistrationController::register
 
 home:
-  path: /home
+  path: /user/home
   controller: App\Controller\DefaultController::index
 
 pronostic:
-  path: /pronostic
+  path: /user/pronostic
   controller: App\Controller\DefaultController::index
 
 resultats:
-  path: /resultats
+  path: /user/resultats
   controller: App\Controller\DefaultController::index
 
 profil:
-  path: /profil
+  path: /user/profil
   controller: App\Controller\DefaultController::index
 
 leaderboard:
-  path: /classement
+  path: /user/classement
   controller: App\Controller\DefaultController::index
 
 admin:

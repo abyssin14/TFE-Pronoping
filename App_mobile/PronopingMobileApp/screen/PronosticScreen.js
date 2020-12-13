@@ -4,6 +4,7 @@ import Header from '../component/Header'
 import { getRencontres } from "../utils/fetching"
 import EditPronosticItem from "../component/EditPronosticItem"
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { COLOR } from "../utils/Styling"
 
 
 class PronosticScreen extends React.Component {
@@ -52,7 +53,7 @@ class PronosticScreen extends React.Component {
           <Header navigation= {this.props.navigation}/>
             {isLoading?
               <View style={styles.loader}>
-                <ActivityIndicator size="large" color="green" />
+                <ActivityIndicator size="large" color={COLOR.orange} />
               </View>
               :
               <View style={{  alignItems: 'center', marginTop:75, marginBottom:60}}>

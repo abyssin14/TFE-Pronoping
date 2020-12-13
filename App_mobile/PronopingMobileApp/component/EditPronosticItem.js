@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, TextInput, Dimensions, TouchableOpacity, ActivityIndicator, Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/Foundation'
 import { postPronostic, updatePreviousPronostics } from '../utils/fetching'
-
+import { COLOR } from '../utils/Styling'
 
 class EditPronosticItem extends React.Component {
   constructor(props) {
@@ -116,7 +116,7 @@ class EditPronosticItem extends React.Component {
                     style={styles.submit}
                     onPress={() => this.addPronostic()}
                     >
-                    <Icon name="check"  size={15} color='green' style={styles.checkIcon}/>
+                    <Icon name="check"  size={15} color= {COLOR.orange} style={styles.checkIcon}/>
                   </TouchableOpacity>
                   </View>
               </View>
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
   editPronosticContainer:{
     height:80,
     width: windowWidth-30,
-    backgroundColor: 'green',
+    backgroundColor: COLOR.orange,
     borderRadius: 10,
     marginTop: 10,
     padding: 10,

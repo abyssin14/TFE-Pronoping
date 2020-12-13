@@ -1,23 +1,25 @@
 :root {
-  --pcol: black;
+  --orange: #fb5529;
+  --grey : #232531;
+  --pcol: rgb(251,85,41);
   --scol: white;
   --tspeed: 0.5s;
   --base-scale: 1.1;
   --subMenu-width: 12.25rem;
-/*
+
   --fgrad: linear-gradient(
     139deg,
-    rgba(51, 51, 51, 1) 16%,
-    rgb(136, 44, 44) 52%,
-    rgba(51, 51, 51, 1) 88%
+    rgba(51, 51, 51, 1) 2%,
+    rgb(251,85,41) 50%,
+    rgba(51, 51, 51, 1) 98%
   );
   --sgrad: linear-gradient(
     139deg,
     rgba(51, 51, 51, 1) 16%,
-    rgb(129, 28, 129) 76%,
+    rgb(251,85,41) 86%,
     rgba(51, 51, 51, 1) 100%
   );
-*/
+
   --rm-font-size: 0.875rem;
   --sm-font-size: 0.65rem;
 }
