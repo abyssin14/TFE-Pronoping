@@ -84,11 +84,11 @@ class EditPronosticItem extends React.Component {
             <View>
               {pronostic ?
                 <View style={styles.myPronosticContainer}>
-                <Text style={{color:"white"}}>Vote pronostic : {pronostic[0]} / {pronostic[1]}</Text>
+                  <Text style={styles.text}>Vote pronostic : {pronostic[0]} / {pronostic[1]}</Text>
                 </View>
               :
               <View style={styles.pronostiquerContainer}>
-                <Text style={{color:"white"}}>Pronostiquer : </Text>
+                <Text style={styles.text}>Pronostiquer : </Text>
                   <TextInput
                     style={styles.input}
                     value={this.state.score1}
@@ -136,16 +136,22 @@ const styles = StyleSheet.create({
     justifyContent:'center',
   },
   editPronosticContainer:{
-    height:80,
+    height:110,
     width: windowWidth-30,
-    backgroundColor: COLOR.orange,
+    backgroundColor: COLOR.lightGrey,
     borderRadius: 10,
     marginTop: 10,
     padding: 10,
+    borderWidth: 2,
+    borderColor: COLOR.orange
   },
   textRencontre:{
     fontWeight: 'bold',
     color: 'white'
+  },
+  text:{
+    color:'white',
+    textAlign: 'left'
   },
   input:{
     width: 45,
@@ -170,10 +176,13 @@ const styles = StyleSheet.create({
   pronostiquerContainer:{
     flexDirection:'row',
     alignItems: 'center',
+    justifyContent:'center',
+    marginTop:10
+
   },
   myPronosticContainer:{
-    alignItems: 'center',
-    marginTop:10,
+    alignItems:'center',
+    marginTop:20,
   }
 });
 

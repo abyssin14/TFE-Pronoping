@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableWithoutFeedback, TouchableOpacity, Keyboard, ActivityIndicator, Dimensions, ScrollView  } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableWithoutFeedback, TouchableOpacity, Keyboard, ActivityIndicator, Dimensions, ScrollView, SafeAreaView  } from 'react-native';
 import { connection } from '../utils/fetching'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { COLOR } from '../utils/Styling'
@@ -20,14 +20,20 @@ handleConnectionClick = async ()=>{
   })
   var isAuth = await connection(this.state.username, this.state.password)
   if(isAuth){
-    this.setIsAuth(true)
-    this.props.route.params.updateNavigation()
+    this.setIsAuth(true).then(()=>{
+      this.props.route.params.updateNavigation().then(()=>{
+        this.setState({
+          isLoading: false
+        })
+      })
+    })
   }else{
     alert("Nom d'utilisateur ou mot de passe incorrect !")
+    this.setState({
+      isLoading: false
+    })
   }
-  this.setState({
-    isLoading: false
-  })
+
 }
  async setIsAuth(value){
    try {
@@ -45,7 +51,7 @@ handleConnectionClick = async ()=>{
     render() {
       const isLoading = this.state.isLoading;
       return(
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       {isLoading?
         <View style={styles.loader}>
           <ActivityIndicator size="large" color={COLOR.orange} />
@@ -101,7 +107,7 @@ handleConnectionClick = async ()=>{
         </TouchableWithoutFeedback>
       }
 
-      </View>
+      </SafeAreaView>
     )
   }
 }

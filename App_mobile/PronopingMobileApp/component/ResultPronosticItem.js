@@ -39,20 +39,20 @@ class ResultPronosticItem extends React.Component {
         <View style={styles.editPronosticContainer}>
                 <Text style={styles.textRencontre}>{rencontre.equipe.nom} contre {rencontre.adversaire} (division {rencontre.equipe.division})</Text>
                 <View style={styles.myPronosticContainer}>
-                  <Text style={{color:"white"}}>Vote pronostic : {pronostic.score[0]} / {pronostic.score[1]}</Text>
+                  <Text style={styles.text}>Vote pronostic : {pronostic.score[0]} / {pronostic.score[1]}</Text>
                   <View style={{flexDirection:'row'}}>
-                    <Text style={{color:"white"}}>Résultat : </Text>
+                    <Text style={styles.text}>Résultat : </Text>
                     {rencontre.score.length > 0 ?
                       <View>
-                        <Text style={{color:"white"}}>{rencontre.score[0]}/{rencontre.score[1]}</Text>
-                        <Text style={{color:"white"}}>Points rapporté : {pronostic.pointsRapportes}</Text>
+                        <Text style={styles.text}>{rencontre.score[0]}/{rencontre.score[1]}</Text>
                       </View>
                       :
-                      <View>
-                        <Text style={{color:"white"}}>Pas encore disponible.</Text>
-                      </View>
+                        <View>
+                          <Text style={styles.text}>Pas encore disponible.</Text>
+                        </View>
                      }
                   </View>
+                  <Text style={styles.text}>Points rapporté : {pronostic.pointsRapportes != null ? pronostic.pointsRapportes : 'Pas encore disponible.'}</Text>
                 </View>
             </View>
             :null
@@ -70,16 +70,24 @@ const styles = StyleSheet.create({
     justifyContent:'center',
   },
   editPronosticContainer:{
-    height:80,
+    height:130,
     width: windowWidth-30,
-    backgroundColor: COLOR.orange,
+    backgroundColor: COLOR.lightGrey,
     borderRadius: 10,
     marginTop: 10,
     padding: 10,
+    borderWidth: 2,
+    borderColor: COLOR.orange,
+
   },
   textRencontre:{
     fontWeight: 'bold',
     color: 'white'
+  },
+  text:{
+    color:'white',
+    padding: 3,
+
   },
   input:{
     width: 45,
@@ -101,12 +109,9 @@ const styles = StyleSheet.create({
     right: 8,
     top:7,
   },
-  pronostiquerContainer:{
-    flexDirection:'row',
-    alignItems: 'center',
-  },
+
   myPronosticContainer:{
-    alignItems: 'center',
+    alignItems:'flex-start',
     marginTop:10,
   }
 });

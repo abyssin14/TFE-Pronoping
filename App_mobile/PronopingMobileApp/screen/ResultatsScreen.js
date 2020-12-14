@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, ActivityIndicator, Dimensions, FlatList, RefreshControl } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, ActivityIndicator, Dimensions, FlatList, RefreshControl, SafeAreaView } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Header from '../component/Header'
@@ -37,14 +37,15 @@ class ResultatsScreen extends React.Component {
       const rencontres = this.state.rencontres
       console.log(user)
       return(
-        <View>
+        <View style={styles.resultatsContainer}>
+          <SafeAreaView style={{ flex: 0, backgroundColor: COLOR.grey }} />
           <Header navigation={this.props.navigation}/>
           {isLoading?
             <View style={styles.loader}>
               <ActivityIndicator size="large" color={COLOR.orange} />
             </View>
             :
-            <View style={{  alignItems: 'center', marginTop:75, marginBottom:60}}>
+            <View style={{  alignItems: 'center'}}>
             <Text>Résultats Screen</Text>
               <KeyboardAwareScrollView
                 extraHeight={100}
@@ -72,8 +73,12 @@ const styles = StyleSheet.create({
     width: windowWidth,
     backgroundColor: 'grey',
     alignItems: 'center',
-    justifyContent:'center',
-    marginTop:'50%'
+    marginTop:'15%'
   },
+  resultatsContainer:{
+    flex: 1,
+    backgroundColor: 'grey',
+    height: windowHeight
+  }
 });
 export default ResultatsScreen

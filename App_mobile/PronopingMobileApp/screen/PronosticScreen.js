@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, FlatList, Dimension, ActivityIndicator, Dimensions, RefreshControl, KeyboardAvoidingView, Platform } from 'react-native';
+import { StyleSheet, Text, View, FlatList, Dimension, ActivityIndicator, Dimensions, RefreshControl, KeyboardAvoidingView, Platform, SafeAreaView } from 'react-native';
 import Header from '../component/Header'
 import { getRencontres } from "../utils/fetching"
 import EditPronosticItem from "../component/EditPronosticItem"
@@ -49,14 +49,16 @@ class PronosticScreen extends React.Component {
       const user = this.state.user
       const isLoading = this.state.isLoading
       return(
-        <View>
+
+        <View style={styles.pronosticContainer}>
+        <SafeAreaView style={{ flex: 0, backgroundColor: COLOR.grey }} />
           <Header navigation= {this.props.navigation}/>
             {isLoading?
               <View style={styles.loader}>
                 <ActivityIndicator size="large" color={COLOR.orange} />
               </View>
               :
-              <View style={{  alignItems: 'center', marginTop:75, marginBottom:60}}>
+              <View style={{  alignItems: 'center'}}>
               <Text>Pronostic Screen</Text>
                 <KeyboardAwareScrollView
                   extraHeight={100}
@@ -66,7 +68,7 @@ class PronosticScreen extends React.Component {
                       data={rencontres}
                       renderItem={({item}) => <EditPronosticItem rencontre={item} user={user} refresh={()=>this.componentDidMount()}/>}
                       keyExtractor={item => item.id.toString()}
-                      style={{ marginBottom:20}}
+                      style={{ marginBottom:120}}
 
                     />
                   </KeyboardAwareScrollView>
@@ -84,9 +86,13 @@ const styles = StyleSheet.create({
     width: windowWidth,
     backgroundColor: 'grey',
     alignItems: 'center',
-    justifyContent:'center',
-    marginTop:'50%'
+    marginTop: '15%'
   },
+  pronosticContainer:{
+    flex: 1,
+    backgroundColor: 'grey',
+    height: windowHeight
+  }
 });
 
 export default PronosticScreen

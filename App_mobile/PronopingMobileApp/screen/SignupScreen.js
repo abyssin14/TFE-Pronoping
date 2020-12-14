@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableWithoutFeedback, TouchableOpacity, Keyboard, ActivityIndicator, Dimensions  } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableWithoutFeedback, TouchableOpacity, Keyboard, ActivityIndicator, Dimensions, SafeAreaView  } from 'react-native';
 import { signup } from '../utils/fetching'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { COLOR } from '../utils/Styling'
@@ -64,7 +64,7 @@ class SignupScreen extends React.Component {
     render() {
       const isLoading = this.state.isLoading;
       return(
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       {isLoading?
         <View style={styles.loader}>
           <ActivityIndicator size="large" color={COLOR.orange} />
@@ -135,7 +135,7 @@ class SignupScreen extends React.Component {
         </TouchableWithoutFeedback>
       }
 
-      </View>
+      </SafeAreaView>
     )
   }
 }

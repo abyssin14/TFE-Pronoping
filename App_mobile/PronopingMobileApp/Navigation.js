@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, Platform, Button, ScrollView, Dimensions, Image } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, Platform, Button, ScrollView, Dimensions, Image, ActivityIndicator } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import 'react-native-gesture-handler';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -7,7 +7,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { COLOR } from "./utils/Styling"
 import { getJoueurByUsername } from './utils/fetching'
-
+import Header from './component/Header'
 import HomeScreen from './screen/HomeScreen'
 import PronosticScreen from './screen/PronosticScreen'
 import ResultatsScreen from './screen/ResultatsScreen'
@@ -35,10 +35,13 @@ class Navigation extends React.Component {
    this.state = {
     isAuth: null,
     user: null,
-    isLoading: true
+    isLoading: false
   }
  }
  async componentDidMount(){
+   this.setState({
+     isLoading: false,
+   })
    const isAuth = await AsyncStorage.getItem('isAuth')
    const username = await AsyncStorage.getItem('username')
    const user = await getJoueurByUsername(username)
@@ -61,10 +64,7 @@ class Navigation extends React.Component {
    this.updateNavigation()
  }
   async updateNavigation(){
-    this.setState({
-      isAuth:true
-    })
-    this.componentDidMount()
+    const response = await this.componentDidMount()
    }
   customDrawerContent(props) {
     return (
@@ -91,8 +91,14 @@ class Navigation extends React.Component {
   render(){
     const isAuth = this.state.isAuth
     const user = this.state.user
+    const isLoading = this.state.isLoading;
     return (
       <View style={styles.container}>
+        {isLoading?
+          <View style={styles.loader}>
+            <ActivityIndicator size="large" color={COLOR.orange} />
+          </View>
+          :
           <NavigationContainer>
             {isAuth ?
               <Drawer.Navigator
@@ -102,32 +108,35 @@ class Navigation extends React.Component {
                 <Drawer.Screen name="Resultats" component={ResultatsScreen} initialParams={{ user: user }} />
               </Drawer.Navigator>
               :
-              <Stack.Navigator
-                screenOptions={{
-                  headerStyle: {
-                    backgroundColor: COLOR.orange,
-                  },
-                  headerTintColor: '#fff',
-                  headerTitleStyle: {
-                    fontWeight: 'bold',
-                  },
-                }}
+                <Stack.Navigator
+                  screenOptions={{
 
-              >
-                <Stack.Screen
-                  name="Login"
-                  component={LoginScreen}
-                  initialParams={{ updateNavigation: this.updateNavigation.bind(this) }}
-                  options={{ title: 'Pronoping' }}
-                  />
+                    headerStyle: {
+                      backgroundColor: COLOR.orange,
+                    },
+                    headerTintColor: '#fff',
+                    headerTitleStyle: {
+                      fontWeight: 'bold',
+                    },
+                    headerShown: true
+                  }}
+
+                >
                   <Stack.Screen
-                    name="Signup"
-                    component={SignupScreen}
-                    options={{ title: "Pronoping",headerBackTitle:'Retour' }}
+                    name="Login"
+                    component={LoginScreen}
+                    initialParams={{ updateNavigation: this.updateNavigation.bind(this) }}
+                    options={{ title: 'Pronoping' }}
                     />
-              </Stack.Navigator>
+                    <Stack.Screen
+                      name="Signup"
+                      component={SignupScreen}
+                      options={{ title: "Pronoping",headerBackTitle:'Retour' }}
+                      />
+                </Stack.Navigator>
             }
         </NavigationContainer>
+      }
       </View>
     );
   }
@@ -154,6 +163,25 @@ const styles = StyleSheet.create({
     fontWeight:'bold',
     fontSize: 25,
     color: COLOR.orange
-  }
+  },
+  loader:{
+    flex:1,
+    width: windowWidth,
+    backgroundColor: 'grey',
+    alignItems: 'center',
+    justifyContent:'center'
+  },
+  header: {
+    paddingTop:5,
+    backgroundColor: COLOR.orange,
+    height: 70,
+    justifyContent:'center',
+    alignItems: 'center',
+  },
+  title:{
+    fontWeight:'bold',
+    color: 'white',
+    fontSize :18
+  },
 });
 export default Navigation
