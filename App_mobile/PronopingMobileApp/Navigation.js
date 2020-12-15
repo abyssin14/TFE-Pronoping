@@ -13,6 +13,7 @@ import PronosticScreen from './screen/PronosticScreen'
 import ResultatsScreen from './screen/ResultatsScreen'
 import LoginScreen from './screen/LoginScreen'
 import SignupScreen from './screen/SignupScreen'
+import ClassementScreen from './screen/ClassementScreen'
 
 
 import {
@@ -106,6 +107,7 @@ class Navigation extends React.Component {
                  >
                 <Drawer.Screen name="Pronostic" component={PronosticScreen} initialParams={{ user: user }} />
                 <Drawer.Screen name="Resultats" component={ResultatsScreen} initialParams={{ user: user }} />
+                <Drawer.Screen name="Classement" component={ClassementScreen} initialParams={{ user: user }} />
               </Drawer.Navigator>
               :
                 <Stack.Navigator

@@ -189,7 +189,11 @@ class Joueur implements UserInterface
 
     public function getNbPoints(): ?int
     {
-        return $this->nbPoints;
+        $nbPoints =  $this->nbPoints;
+        if($nbPoints == null){
+          $nbPoints = 0;
+        }
+        return $nbPoints;
     }
 
     public function setNbPoints(?int $nbPoints): self

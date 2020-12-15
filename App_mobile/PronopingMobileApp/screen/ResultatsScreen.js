@@ -55,7 +55,7 @@ class ResultatsScreen extends React.Component {
                     data={rencontres}
                     renderItem={({item}) => <ResultPronosticItem rencontre={item} joueur={user} />}
                     keyExtractor={item => item.id.toString()}
-                    style={{ marginBottom:20}}
+                    style={{ marginBottom:120}}
 
                   />
                 </KeyboardAwareScrollView>
