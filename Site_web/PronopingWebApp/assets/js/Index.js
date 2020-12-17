@@ -33,7 +33,6 @@ class Index extends Component {
         user: response,
         isLoading: false
       });
-      console.log(this.state.user)
     })
   }
   isUser(){

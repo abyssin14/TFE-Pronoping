@@ -25,7 +25,7 @@ class SignupScreen extends React.Component {
      return false
    }
    if(this.state.password.length < 6){
-     alert('Votre mot de passe doit comporter au moins 6 caractère.')
+     alert('Votre mot de passe doit comporter au moins 6 caractères.')
      return false
    }
    if(this.state.password !== this.state.confirmPassword){

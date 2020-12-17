@@ -279,3 +279,38 @@ export async function signup(username, password, matricule){
   });
   return response.ok;
 }
+
+export async function updateUsername(id, username){
+  var club = await getClub(7);
+  for(let i=0; i < club.joueurs.length; i++){
+    if(club.joueurs[i].username == username){
+      return "usernameError"
+    }
+  }
+  const response = await fetch(HOST+'/api/joueurs/'+id,{
+    method: 'PATCH',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/merge-patch+json',
+    },
+    body: JSON.stringify({
+        "username": username,
+
+    })
+  });
+  return response.ok;
+}
+export async function updatePassword(id, password){
+  const response = await fetch(HOST+'/api/joueurs/'+id,{
+    method: 'PATCH',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/merge-patch+json',
+    },
+    body: JSON.stringify({
+        "password": password,
+
+    })
+  });
+  return response.ok;
+}

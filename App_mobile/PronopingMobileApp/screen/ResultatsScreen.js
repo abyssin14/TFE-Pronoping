@@ -35,7 +35,6 @@ class ResultatsScreen extends React.Component {
       const isLoading = this.state.isLoading;
       const user = this.state.user
       const rencontres = this.state.rencontres
-      console.log(user)
       return(
         <View style={styles.resultatsContainer}>
           <SafeAreaView style={{ flex: 0, backgroundColor: COLOR.grey }} />

@@ -6,9 +6,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { COLOR } from "./utils/Styling"
-import { getJoueurByUsername } from './utils/fetching'
+import { getJoueur } from './utils/fetching'
 import Header from './component/Header'
-import HomeScreen from './screen/HomeScreen'
+import ProfileScreen from './screen/ProfileScreen'
 import PronosticScreen from './screen/PronosticScreen'
 import ResultatsScreen from './screen/ResultatsScreen'
 import LoginScreen from './screen/LoginScreen'
@@ -44,8 +44,8 @@ class Navigation extends React.Component {
      isLoading: false,
    })
    const isAuth = await AsyncStorage.getItem('isAuth')
-   const username = await AsyncStorage.getItem('username')
-   const user = await getJoueurByUsername(username)
+   const userId = await AsyncStorage.getItem('userId')
+   const user = await getJoueur(userId)
    this.setState({
      isAuth: isAuth,
      user: user,
@@ -56,7 +56,7 @@ class Navigation extends React.Component {
  async handleLogoutClick(){
    try {
      await AsyncStorage.removeItem('isAuth')
-     await AsyncStorage.removeItem('username')
+     await AsyncStorage.removeItem('userId')
    } catch(e) {
      // remove error
      console.log('erreur logout')
@@ -104,7 +104,9 @@ class Navigation extends React.Component {
             {isAuth ?
               <Drawer.Navigator
                  drawerContent={this.customDrawerContent.bind(this)}
+                 initialRouteName="Resultats"
                  >
+                <Drawer.Screen name="Profile" component={ProfileScreen} initialParams={{ user: user, logout: this.handleLogoutClick }} />
                 <Drawer.Screen name="Pronostic" component={PronosticScreen} initialParams={{ user: user }} />
                 <Drawer.Screen name="Resultats" component={ResultatsScreen} initialParams={{ user: user }} />
                 <Drawer.Screen name="Classement" component={ClassementScreen} initialParams={{ user: user }} />

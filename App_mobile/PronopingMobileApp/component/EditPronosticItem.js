@@ -52,7 +52,6 @@ class EditPronosticItem extends React.Component {
       this.setState({
         isLoading: true
       })
-      console.log(this.props.user)
       postPronostic(this.props.user, this.props.rencontre, this.state.tabScore).then(response =>{
         if(response){
           this.setState({

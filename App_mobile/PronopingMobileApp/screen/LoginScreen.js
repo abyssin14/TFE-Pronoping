@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableWithoutFeedback, TouchableOpacity, Keyboard, ActivityIndicator, Dimensions, ScrollView, SafeAreaView  } from 'react-native';
-import { connection } from '../utils/fetching'
+import { connection, getJoueurByUsername } from '../utils/fetching'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { COLOR } from '../utils/Styling'
 
@@ -39,7 +39,9 @@ handleConnectionClick = async ()=>{
    try {
      const jsonValueIsAuth = JSON.stringify(value)
      await AsyncStorage.setItem('isAuth', jsonValueIsAuth)
-     await AsyncStorage.setItem('username', this.state.username)
+     var user = await getJoueurByUsername(this.state.username)
+     const jsonValueuserId = JSON.stringify(user.id)
+     await AsyncStorage.setItem('userId', jsonValueuserId)
 
    } catch(e) {
      console.log('Error.')
