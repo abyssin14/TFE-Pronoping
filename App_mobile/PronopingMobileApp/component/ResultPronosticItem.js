@@ -8,7 +8,8 @@ class ResultPronosticItem extends React.Component {
     super(props);
     this.state = {
       isLoading: false,
-      pronostic: null
+      pronostic: null,
+      rencontre: null
     };
   }
 
@@ -33,6 +34,7 @@ class ResultPronosticItem extends React.Component {
     const rencontre = this.props.rencontre;
     const isLoading = this.state.isLoading;
     const pronostic = this.state.pronostic;
+
     return(
       <View>
       {pronostic && !pronostic.isFinished ?

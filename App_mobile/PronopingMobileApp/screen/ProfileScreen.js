@@ -103,7 +103,9 @@ class ProfileScreen extends React.Component {
              extraHeight={100}
              contentContainerStyle={{  alignItems: 'center'}}
            >
-             <Text>Mon Profil</Text>
+              <View style={styles.screenNameContainer}>
+               <Text style={styles.screenNameText}>Mon profil</Text>
+              </View>
              <View style={styles.infoContainer}>
               <Text style={styles.titleInfo}>Mes informations</Text>
               <Text style={styles.textInfo}>Nom d'utilisateur : {username}</Text>
@@ -246,7 +248,7 @@ const styles = StyleSheet.create({
     bottom: 40,
     width: windowWidth/2,
     height:30,
-    backgroundColor: 'red',
+    backgroundColor: '#ce0000',
     borderRadius: 50,
     alignSelf: 'center',
   },
@@ -257,6 +259,14 @@ const styles = StyleSheet.create({
     alignSelf:'center',
     marginTop:5
   },
+  screenNameContainer:{
+    margin:10
+  },
+  screenNameText:{
+    fontSize:18,
+    fontWeight:'bold',
+    color: COLOR.grey
+  }
 });
 
 export default ProfileScreen

@@ -5,6 +5,7 @@ import 'react-native-gesture-handler';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Icon from 'react-native-vector-icons/Foundation'
 import { COLOR } from "./utils/Styling"
 import { getJoueur } from './utils/fetching'
 import Header from './component/Header'
@@ -80,11 +81,7 @@ class Navigation extends React.Component {
                 activeTintColor='white'
                 activeBackgroundColor={COLOR.orange}
               />
-              <DrawerItem
-                label="Se déconnecter"
-                onPress={this.handleLogoutClick}
-                inactiveTintColor='red'
-              />
+                <Text style={styles.developBy}>Develop by Tristan Pestiaux</Text>
             </SafeAreaView>
           </View>
     );
@@ -106,10 +103,42 @@ class Navigation extends React.Component {
                  drawerContent={this.customDrawerContent.bind(this)}
                  initialRouteName="Resultats"
                  >
-                <Drawer.Screen name="Profile" component={ProfileScreen} initialParams={{ user: user, logout: this.handleLogoutClick }} />
-                <Drawer.Screen name="Pronostic" component={PronosticScreen} initialParams={{ user: user }} />
-                <Drawer.Screen name="Resultats" component={ResultatsScreen} initialParams={{ user: user }} />
-                <Drawer.Screen name="Classement" component={ClassementScreen} initialParams={{ user: user }} />
+                <Drawer.Screen
+                  name="Profile"
+                  component={ProfileScreen}
+                  initialParams={{ user: user, logout: this.handleLogoutClick }}
+                  options={{
+                    title: 'Mon profil',
+                    drawerIcon:()=><Icon name="torso"  size={25} color='white' />
+                  }}
+                  />
+                <Drawer.Screen
+                  name="Pronostic"
+                  component={PronosticScreen}
+                  initialParams={{ user: user }}
+                  options={{
+                    title: 'Pronostiquer',
+                    drawerIcon:()=><Icon name="pencil"  size={25} color='white' />
+                  }}
+                  />
+                <Drawer.Screen
+                  name="Resultats"
+                  component={ResultatsScreen}
+                  initialParams={{ user: user }}
+                  options={{
+                    title: 'Résultats',
+                    drawerIcon:()=><Icon name="graph-bar"  size={25} color='white' />
+                  }}
+                  />
+                <Drawer.Screen
+                  name="Classement"
+                  component={ClassementScreen}
+                  initialParams={{ user: user }}
+                  options={{
+                    title: 'Classement',
+                    drawerIcon:()=><Icon name="trophy"  size={25} color='white' />
+                  }}
+                  />
               </Drawer.Navigator>
               :
                 <Stack.Navigator
@@ -187,5 +216,10 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize :18
   },
+  developBy:{
+    position:'absolute',
+    bottom:'2%',
+    alignSelf: 'center'
+  }
 });
 export default Navigation

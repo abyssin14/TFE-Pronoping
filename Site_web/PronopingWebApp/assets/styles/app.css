@@ -1,11 +1,14 @@
 :root {
+  overflow: hidden;
   --orange: #fb5529;
   --grey : #232531;
+  --lightGrey: #4f5260;
   --pcol: rgb(251,85,41);
   --scol: white;
   --tspeed: 0.5s;
   --base-scale: 1.1;
   --subMenu-width: 12.25rem;
+
 
   --fgrad: linear-gradient(
     139deg,
@@ -20,19 +23,78 @@
     rgba(51, 51, 51, 1) 100%
   );
 
-  --rm-font-size: 0.875rem;
-  --sm-font-size: 0.65rem;
+
+}::-webkit-scrollbar{
+  display:none
 }
 
-
-/* ------------- AdminClubView ---------------- */
-.clubContainer{
+/* ------------- Global CSS ---------------- */
+.backgroundContainer{
+  height:100vh;
+  width: 100vw;
+  background-color: var(--lightGrey);
+}
+.doubleContainer{
   display: flex;
   justify-content: space-between;
 }
-.gestionclubContainer{
-  height: 80vh;
+.demiContainer{
   width: 45vw;
+  height:75vh;
   margin:20px;
-  background-color: grey;
+  background-color: white;
+  border-radius: 25px;
+  border: 3px solid #fb5529;
+
 }
+.titleContainer{
+  display: flex;
+  margin-top: 10px;
+  color: var(--lightGrey);
+  font-size: 20px;
+  font-weight: bold;
+}
+.titleText{
+  margin-left:auto;
+  margin-right:auto
+
+}
+
+/* ------------- ResultatsView ---------------- */
+.pronosticsActuelsContainer{
+  display: flex;
+  flex-direction: column;
+  max-height:89%;
+  overflow-y: scroll;
+}
+.ResultPronosticFragmentContainer{
+  border: solid 2px var(--lightGrey);
+  border-radius: 10px;
+  margin:5px;
+  padding:5px;
+}
+.ResultPronosticFragmentRencontreText{
+  text-align: center;
+  color: #fb5529;
+  font-weight: bold;
+}
+.ResultPronosticFragmentPronoResultContainer{
+  display: flex;
+  justify-content: space-between;
+  margin-right: 20%;
+  margin-left: 20%
+}
+.ResultPronosticFragmentPronosticText{
+}
+.ResultPronosticFragmentResultatText{
+
+}
+.ResultPronosticFragmentPointsContainer{
+  display: flex;
+  justify-content: center;
+}
+
+/* ------------- ClubView ---------------- */
+
+
+/* ------------- ProfilView ---------------- */

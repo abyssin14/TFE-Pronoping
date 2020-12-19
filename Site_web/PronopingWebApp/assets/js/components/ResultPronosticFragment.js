@@ -4,7 +4,6 @@ class ResultPronosticFragment extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoading: false,
       pronostic: null
     };
   }
@@ -28,42 +27,27 @@ class ResultPronosticFragment extends Component {
 
   render(){
     const rencontre = this.props.rencontre;
-    const isLoading = this.state.isLoading;
     const pronostic = this.state.pronostic;
 
       return (
-        <div>
-          { isLoading ? <div>chargement....</div> :
           <div>
             { pronostic ?
-              <div>
+              <div className='ResultPronosticFragmentContainer'>
               { !pronostic.isFinished ?
                 <div>
-                    {rencontre.equipe.nom} contre {rencontre.adversaire} (division {rencontre.equipe.division}) <br></br>
-                    <div style={{display:"inline-flex"}}>
-                      <div>pronostics :</div>
-                      <div>{pronostic.score[0]}/{pronostic.score[1]}</div>
+                    <p className='ResultPronosticFragmentRencontreText'>{rencontre.equipe.nom} contre {rencontre.adversaire} (division {rencontre.equipe.division})</p>
+                    <div className='ResultPronosticFragmentPronoResultContainer'>
+                      <p className='ResultPronosticFragmentPronosticText'>Votre pronostics : {pronostic.score[0]}/{pronostic.score[1]}</p>
+                      <p className='ResultPronosticFragmentResultatText'>Résultat : {rencontre.score.length > 0 ? rencontre.score[0]+'/'+rencontre.score[1] : 'indisponible'}</p>
                     </div>
-                    <div>
-                      Résultat :
-                      { rencontre.score.length > 0 ?
-                        <div>
-                          <div>{rencontre.score[0]}/{rencontre.score[1]}</div>
-                          <div>Points rapporté : {pronostic.pointsRapportes}</div>
-                        </div>
-                        :
-                          <div>
-                          Pas encore disponible.
-                        </div>
-                      }
+                    <div className='ResultPronosticFragmentPointsContainer'>
+                      <p>Points rapporté : {pronostic.pointsRapportes ? pronostic.pointsRapportes : 'indisponible'}</p>
                     </div>
                   </div>
                 :null}
               </div>
               :null}
           </div>
-        }
-      </div>
     );
   }
 

@@ -26,18 +26,25 @@ class ResultatsView extends Component {
     return (
       <div>
         { isLoading ? <div>chargement...</div> :
-          <div>
-            <h1>Resultats Page!</h1>
-            <div className='clubContainer'>
-              <div className='gestionclubContainer'>
-                {this.state.rencontres.map(rencontre =>{
-                  return(
-                    <ResultPronosticFragment rencontre={rencontre} joueur={joueur}/>
-                    )
-                  })}
+          <div className='backgroundContainer'>
+            <h1>Resultats</h1>
+            <div className='doubleContainer'>
+              <div className='demiContainer'>
+                <div className='titleContainer'>
+                  <p className='titleText'>Pronostics actuels</p>
+                </div>
+                <div className='pronosticsActuelsContainer'>
+                  {this.state.rencontres.map(rencontre =>{
+                    return(
+                      <ResultPronosticFragment rencontre={rencontre} joueur={joueur}/>
+                      )
+                    })}
+                </div>
               </div>
-              <div className='gestionclubContainer'>
-              Anciens pronostics
+              <div className='demiContainer'>
+                <div className='titleContainer'>
+                  <p className='titleText'>Ancien pronostics</p>
+                </div>
               </div>
             </div>
           </div>

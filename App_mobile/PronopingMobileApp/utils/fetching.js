@@ -1,6 +1,6 @@
 import { getPointsRapportes } from "./CalculPoints.js"
 
-const HOST = "http://192.168.1.28:8000";
+const HOST = "http://192.168.1.55:8000";
 
 export async function getJoueurs(){
     const response = await fetch(HOST+"/api/joueurs/");
@@ -237,10 +237,6 @@ export async function connection(username, password){
   formData.append('_password', password);
   const response = await fetch(HOST + '/login',{
     method: 'POST',
-    headers: {
-      'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-      'Content-Type': 'application/x-www-form-urlencoded',
-    },
     body: formData
   })
   const body = await response.text()

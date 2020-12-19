@@ -59,9 +59,11 @@ class PronosticScreen extends React.Component {
               </View>
               :
               <View style={{  alignItems: 'center'}}>
-              <Text>Pronostic Screen</Text>
+                <View style={styles.screenNameContainer}>
+                 <Text style={styles.screenNameText}>Pronostiquer</Text>
+                </View>
                 <KeyboardAwareScrollView
-                  extraHeight={100}
+                  extraHeight={135}
                   refreshControl={<RefreshControl onRefresh={()=>this.componentDidMount()} />}
                 >
                     <FlatList
@@ -92,6 +94,14 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'grey',
     height: windowHeight
+  },
+  screenNameContainer:{
+    margin:10
+  },
+  screenNameText:{
+    fontSize:18,
+    fontWeight:'bold',
+    color: COLOR.grey
   }
 });
 

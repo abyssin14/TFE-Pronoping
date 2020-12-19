@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, ActivityIndicator, Dimensions, FlatList, RefreshControl, SafeAreaView } from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import  KeyboardAwareFlatList  from 'react-native-keyboard-aware-scroll-view/lib/KeyboardAwareFlatList'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Header from '../component/Header'
 import { COLOR } from '../utils/Styling'
@@ -45,19 +45,17 @@ class ResultatsScreen extends React.Component {
             </View>
             :
             <View style={{  alignItems: 'center'}}>
-            <Text>Résultats Screen</Text>
-              <KeyboardAwareScrollView
-                extraHeight={100}
-                refreshControl={<RefreshControl onRefresh={()=>this.componentDidMount()} />}
-              >
+              <View style={styles.screenNameContainer}>
+               <Text style={styles.screenNameText}>Résultats</Text>
+              </View>
                   <FlatList
                     data={rencontres}
                     renderItem={({item}) => <ResultPronosticItem rencontre={item} joueur={user} />}
                     keyExtractor={item => item.id.toString()}
                     style={{ marginBottom:120}}
-
+                    refreshControl={<RefreshControl onRefresh={()=>this.componentDidMount()} />}
+                    initialNumToRender={rencontres.length}
                   />
-                </KeyboardAwareScrollView>
             </View>
           }
       </View>
@@ -78,6 +76,14 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'grey',
     height: windowHeight
+  },
+  screenNameContainer:{
+    margin:10
+  },
+  screenNameText:{
+    fontSize:18,
+    fontWeight:'bold',
+    color: COLOR.grey
   }
 });
 export default ResultatsScreen

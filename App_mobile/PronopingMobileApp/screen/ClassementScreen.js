@@ -49,7 +49,9 @@ class ClassementScreen extends React.Component {
             </View>
             :
             <View style={{  alignItems: 'center'}}>
-              <Text>Classement Screen</Text>
+              <View style={styles.screenNameContainer}>
+               <Text style={styles.screenNameText}>Classement</Text>
+              </View>
               <View style={styles.table}>
                 <View style={styles.header}>
                   <View style={styles.headerSmallCell}>
@@ -62,18 +64,13 @@ class ClassementScreen extends React.Component {
                     <Text style={styles.headerTextCell}>Points</Text>
                   </View>
                 </View>
-                <KeyboardAwareScrollView
-                  extraHeight={100}
-                  refreshControl={<RefreshControl onRefresh={()=>this.componentDidMount()} />}
-                >
                     <FlatList
                       data={joueurs}
                       renderItem={({item, index}) => <ClassementRowItem joueur={item} index={index} user={user} />}
                       keyExtractor={item => item.id.toString()}
-                      style={{ marginBottom:120, marginTop:10}}
-
+                      style={{ marginTop:10}}
+                      refreshControl={<RefreshControl onRefresh={()=>this.componentDidMount()} />}
                     />
-                  </KeyboardAwareScrollView>
                 </View>
             </View>
           }
@@ -99,7 +96,7 @@ const styles = StyleSheet.create({
   table: {
     backgroundColor: COLOR.lightGrey,
     width: windowWidth -50,
-    height: '85%',
+    height: '80%',
     borderRadius: 10,
     borderWidth: 2,
     borderColor: COLOR.orange,
@@ -124,6 +121,14 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 16,
   },
+  screenNameContainer:{
+    margin:10
+  },
+  screenNameText:{
+    fontSize:18,
+    fontWeight:'bold',
+    color: COLOR.grey
+  }
 
 });
 export default ClassementScreen

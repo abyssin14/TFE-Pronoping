@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, TextInput, Dimensions, TouchableOpacity, ActivityIndicator, Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/Foundation'
 import { postPronostic, updatePreviousPronostics } from '../utils/fetching'
+import { checkScore } from '../utils/CalculPoints'
 import { COLOR } from '../utils/Styling'
 
 class EditPronosticItem extends React.Component {
@@ -49,23 +50,28 @@ class EditPronosticItem extends React.Component {
       })
     }
     addPronostic(){
-      this.setState({
-        isLoading: true
-      })
-      postPronostic(this.props.user, this.props.rencontre, this.state.tabScore).then(response =>{
-        if(response){
-          this.setState({
-            pronostic: this.state.tabScore
-          })
-          updatePreviousPronostics(this.props.user).then(response =>{
-            if(response){
-              this.setState({
-                isLoading: false,
-              })
-            }
-          })
-        }
-      })
+      if(checkScore(this.state.tabScore)){
+        this.setState({
+          isLoading: true
+        })
+        postPronostic(this.props.user, this.props.rencontre, this.state.tabScore).then(response =>{
+          if(response){
+            this.setState({
+              pronostic: this.state.tabScore
+            })
+            updatePreviousPronostics(this.props.user).then(response =>{
+              if(response){
+                this.setState({
+                  isLoading: false,
+                })
+              }
+            })
+          }
+        })
+      }else{
+        alert('Le score encodé est incorrect.')
+      }
+
     }
 
   render(){

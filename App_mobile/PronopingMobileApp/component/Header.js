@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image,StatusBar } from 'react-native';
 import Icon from 'react-native-vector-icons/Foundation'
 import { COLOR } from '../utils/Styling'
 
@@ -11,6 +11,7 @@ class Header extends React.Component {
     render() {
       return(
         <View>
+          <StatusBar backgroundColor={COLOR.grey} />
           <View style={styles.header}>
           <Image source={require('../assets/PronopingLogo.png')} style={{ width: 80, height: 50, position:'absolute', top:15, left:0 }}/>
             <View style={{flexDirection:'row', marginBottom:10}}>
