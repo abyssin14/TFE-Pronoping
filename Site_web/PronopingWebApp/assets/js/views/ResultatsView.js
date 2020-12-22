@@ -36,14 +36,21 @@ class ResultatsView extends Component {
                 <div className='pronosticsActuelsContainer'>
                   {this.state.rencontres.map(rencontre =>{
                     return(
-                      <ResultPronosticFragment rencontre={rencontre} joueur={joueur}/>
+                      <ResultPronosticFragment isCurrentlySection={true} rencontre={rencontre} joueur={joueur}/>
                       )
                     })}
                 </div>
               </div>
               <div className='demiContainer'>
                 <div className='titleContainer'>
-                  <p className='titleText'>Ancien pronostics</p>
+                  <p className='titleText'>Anciens pronostics</p>
+                </div>
+                <div className='pronosticsActuelsContainer'>
+                  {this.state.rencontres.map(rencontre =>{
+                    return(
+                      <ResultPronosticFragment isCurrentlySection={false} rencontre={rencontre} joueur={joueur}/>
+                      )
+                    })}
                 </div>
               </div>
             </div>

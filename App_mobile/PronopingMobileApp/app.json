@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "PronopingMobileApp",
-    "slug": "PronopingMobileApp",
+    "name": "PronopingApp",
+    "slug": "PronopingApp",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/PronopingLogo150_150.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/PronopingLogo150_150.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#232531"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -17,9 +17,13 @@
       "**/*"
     ],
     "ios": {
+      "bundleIdentifier": "com.pestiauxtristan.pronopingapp",
+      "buildNumber": "1.0.0",
       "supportsTablet": true
     },
     "android": {
+      "package": "com.pestiauxtristan.pronopingapp",
+      "versionCode": 1,
       "softwareKeyboardLayoutMode": "pan",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
