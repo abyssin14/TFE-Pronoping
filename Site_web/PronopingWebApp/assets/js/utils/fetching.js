@@ -92,7 +92,8 @@ export async function getRencontres(){
   const response = await fetch(HOST + "/api/rencontres?page=1");
   if(response.ok){
       return await response.json();
-  }}
+  }
+}
 
 export async function getRencontre(id){
       const response = await fetch(HOST+"/api/rencontres/"+id);
@@ -117,7 +118,25 @@ export async function postRencontre(equipe, adversaire, date){
   });
   return response.ok;
 }
-
+export async function deleteRencontre(rencontre){
+  for(let i=0; i < rencontre.pronostics.length; i++){
+    await deletePronostic(rencontre.pronostics[i].id)
+  }
+  const response = await fetch(HOST + '/api/rencontres/'+rencontre.id,{
+    method: 'DELETE',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    }
+  });
+  return response.ok
+}
+export async function getPronostics(){
+  const response = await fetch(HOST + "/api/pronostics?page=1");
+  if(response.ok){
+      return await response.json();
+  }
+}
 export async function getPronostic(id){
     const response = await fetch(HOST+"/api/pronostics/"+id);
     if(response.ok){
@@ -142,6 +161,16 @@ export async function postPronostic(joueur, rencontre, score){
   return response.ok;
 }
 
+export async function deletePronostic(id){
+  const response = await fetch(HOST + '/api/pronostics/'+id,{
+    method: 'DELETE',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    }
+  });
+  return response.ok
+}
 
 export async function addScoreRencontre(rencontreId, score){
   const response = await fetch(HOST+"/api/rencontres/"+rencontreId,{
@@ -162,7 +191,7 @@ export async function updatePoint(rencontreId){
   const rencontre = await getRencontre(rencontreId);
   for(let i=0; i<rencontre.pronostics.length; i++){
     let points = getPointsRapportes(rencontre.score, rencontre.pronostics[i].score)
-    fetch(HOST+"/api/pronostics/"+rencontre.pronostics[i].id,{
+    await fetch(HOST+"/api/pronostics/"+rencontre.pronostics[i].id,{
       method: 'PATCH',
       headers: {
           'Accept': 'application/json',
@@ -176,7 +205,7 @@ export async function updatePoint(rencontreId){
     let joueur = await getJoueur(joueurId);
     let pointsJoueur = joueur.nbPoints ? joueur.nbPoints : 0;
     let newPointsJoueur = pointsJoueur + points;
-    fetch(HOST+"/api/joueurs/"+joueurId,{
+    await fetch(HOST+"/api/joueurs/"+joueurId,{
       method: 'PATCH',
       headers: {
           'Accept': 'application/json',
@@ -185,7 +214,9 @@ export async function updatePoint(rencontreId){
       body: JSON.stringify({
         "nbPoints": newPointsJoueur
       })
-    })  }
+    })
+  }
+  return true
 }
 
 export async function updatePreviousPronostics(joueur){

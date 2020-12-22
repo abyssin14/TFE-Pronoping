@@ -9,34 +9,29 @@ class AdminPronosticsView extends Component {
     super(props);
     this.state = {
       equipes: null,
-      isLoading: true,
+      isLoading: false,
       reload: false,
     };
   }
   componentDidMount(){
-    getEquipesInClub(7).then(result => {
-      this.setState({
-        equipes: result,
-        isLoading: false
-      })
-    })
-  }
-  reload(){
-    this.setState({
-      reload: !reload
-    })
   }
   render(){
     const isLoading = this.state.isLoading;
     return (
-      <div>
+      <div className='backgroundContainer'>
         { isLoading ? <div>chargement</div> :
-          <div className='clubContainer'>
-            <div className='gestionclubContainer'>
-            <RencontresManagement equipes={this.state.equipes} reload={this.reload}/>
+          <div className='doubleContainer'>
+            <div className='demiContainer'>
+              <div className='titleContainer'>
+                <p className='titleText'>Gestion des rencontres</p>
+              </div>
+            <RencontresManagement />
             </div>
-            <div className='gestionclubContainer'>
-            <PronosticsManagement club={this.state.equipes} />
+            <div className='demiContainer'>
+              <div className='titleContainer'>
+                <p className='titleText'>Gestion des pronostics</p>
+              </div>
+            <PronosticsManagement />
             </div>
           </div>
         }

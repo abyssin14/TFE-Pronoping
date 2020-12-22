@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { addScoreRencontre, updatePoint } from "../utils/fetching"
+import { addScoreRencontre, updatePoint, deleteRencontre } from "../utils/fetching"
 
 class AdminRencontreFragment extends Component {
   constructor(props) {
@@ -30,19 +30,36 @@ class AdminRencontreFragment extends Component {
 
     })
   }
-
+  handleDeleteClick(){
+    var confirmation = confirm("Attention en supprimant cette rencontre, tous les pronostics liés à celle-ci seront également supprimés.")
+    if(confirmation){
+      this.setState({
+        isLoading: true
+      })
+      deleteRencontre(this.props.rencontre).then(response =>{
+        if(response){
+          this.setState({
+            isLoading: false,
+          })
+          this.props.reload()
+        }
+      })
+    }
+  }
   addPronostic(){
     this.setState({
       isLoading: true
     })
     addScoreRencontre(this.props.rencontre.id, this.state.tabScore).then(response =>{
-      console.log(response)
       if(response){
         updatePoint(this.props.rencontre.id).then(response =>{
           if(response){
+            console.log(response)
             this.setState({
               isLoading: false,
             })
+            console.log('reload')
+            this.props.reload()
           }
         })
       }
@@ -53,7 +70,7 @@ class AdminRencontreFragment extends Component {
     const equipe = this.props.equipe;
     const rencontre = this.props.rencontre;
     return (
-      <div style={{display:'inline-flex', marginBottom:'5px'}}>
+      <div className='adminRencontreFragmentContainer'>
         <div style={{width: '300px'}}>
           <div>Division {equipe.division} : </div>
           <div> {equipe.nom} contre {rencontre.adversaire} </div>
@@ -61,10 +78,13 @@ class AdminRencontreFragment extends Component {
         <div>
           <div>Résultat : </div>
           <div style={{display:'inline-flex'}}>
-            <input type="number" placeholder="ex: 14" className="form-control w-25 h-75" onChange={this.handleInput1ScoreChange}/>
-            <input type="number" placeholder="ex: 2" className="form-control w-25 h-75" onChange={this.handleInput2ScoreChange}/>
-            <span className="btn btn-success w-10" onClick={this.addPronostic}>Valider</span>
+            <input type="number" placeholder="ex: 14" className="form-control scoreInput" onChange={this.handleInput1ScoreChange}/>
+            <input type="number" placeholder="ex: 2" className="form-control scoreInput" onChange={this.handleInput2ScoreChange}/>
+            <span className="btn w-10 h-25" onClick={this.addPronostic}>Valider</span>
           </div>
+        </div>
+        <div>
+          <span className="boutonDelete" onClick={this.handleDeleteClick.bind(this)}>&#x274C;</span>
         </div>
       </div>
     );

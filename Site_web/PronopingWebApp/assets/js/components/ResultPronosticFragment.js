@@ -47,7 +47,7 @@ class ResultPronosticFragment extends Component {
               <div className='ResultPronosticFragmentContainer'>
                 <div style={{position:'relative'}}>
                   {!this.props.isCurrentlySection ?
-                    <div style={{position:'absolute'}}>
+                    <div>
                       {date}
                     </div>
                   :null}

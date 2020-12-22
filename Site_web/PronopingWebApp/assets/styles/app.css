@@ -59,12 +59,29 @@
   margin-right:auto
 
 }
+.scoreInput{
+  max-width: 80px;
+  margin-left:2px;
+  margin-right:2px;
+  border-radius: 5px;
+  border: 1px solid var(--orange)
+}
+.btn{
+   background-color: #fb5529;
+   color: #fff;
+}
+.boutonDelete{
+  cursor: pointer;
+
+  background-color: var(--grey);
+  padding-bottom: 1.5px;
+  border-radius: 5px;
+
+}
 
 /* ------------- ResultatsView ---------------- */
 .pronosticsActuelsContainer{
-  display: flex;
-  flex-direction: column;
-  max-height:89%;
+  max-height:88%;
   overflow-y: scroll;
 }
 .ResultPronosticFragmentContainer{
@@ -94,6 +111,30 @@
   justify-content: center;
 }
 
+/* ------------- GestionPronosticsView --------------- */
+.RencontresManagementContainer{
+  height:88%;
+  overflow-y: scroll;
+  justify-content: center;
+  padding : 10px
+
+}
+.adminRencontreFragmentContainer{
+  display: inline-flex;
+  justify-content: space-between;
+  width: 100%;
+  border: solid 2px var(--lightGrey);
+  border-radius: 10px;
+  margin:5px;
+  padding:5px;
+}
+.addRencontreContainer{
+  display: flex;
+  justify-content: center
+}
+.addRencontreInput{
+  margin:2px;
+}
 /* ------------- ClubView ---------------- */
 
 
