@@ -66,6 +66,9 @@ class RencontresManagement extends Component {
 
     })
   }
+  reload(){
+    this.props.reload();
+  }
   render(){
     const isLoading = this.state.isLoading
 
@@ -84,7 +87,7 @@ class RencontresManagement extends Component {
                             return(
                               <div>
                                 {!rencontre.isFinished ?
-                                    <AdminRencontreFragment rencontre={rencontre} equipe={equipe} reload={this.componentDidMount.bind(this)} />
+                                    <AdminRencontreFragment rencontre={rencontre} equipe={equipe} reload={this.reload.bind(this)} />
                                   : null}
                               </div>
                             )

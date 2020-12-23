@@ -6,6 +6,8 @@ import Header from '../component/Header'
 import { COLOR } from '../utils/Styling'
 import { getRencontres } from '../utils/fetching'
 import ResultPronosticItem from '../component/ResultPronosticItem'
+import Icon from 'react-native-vector-icons/Foundation'
+
 
 class ResultatsScreen extends React.Component {
   constructor(props) {
@@ -29,7 +31,30 @@ class ResultatsScreen extends React.Component {
       });
     });
   }
-
+  renderRefresh(){
+    var isEmpty = true
+    var joueur = this.state.user;
+    for(let r=0; r<this.state.rencontres.length;r++){
+      var pronostics = this.state.rencontres[r].pronostics;
+      for(let i=0; i < pronostics.length; i++){
+        let id = pronostics[i].joueur.substring(13);
+        if(joueur.id == id){
+          if(!this.state.rencontres[r].pronostics[i].isFinished)
+          isEmpty = false
+        }
+      }
+    }
+    if(isEmpty){
+      return(
+        <TouchableOpacity
+          style={styles.submit}
+          onPress={() => this.componentDidMount()}
+          >
+          <Icon name="refresh"  size={30} color= {COLOR.orange} style={styles.checkIcon}/>
+        </TouchableOpacity>
+      )
+    }
+  }
 
     render(){
       const isLoading = this.state.isLoading;
@@ -48,14 +73,17 @@ class ResultatsScreen extends React.Component {
               <View style={styles.screenNameContainer}>
                <Text style={styles.screenNameText}>Résultats</Text>
               </View>
-                  <FlatList
-                    data={rencontres}
-                    renderItem={({item}) => <ResultPronosticItem rencontre={item} joueur={user} />}
-                    keyExtractor={item => item.id.toString()}
-                    style={{ marginBottom:120}}
-                    refreshControl={<RefreshControl onRefresh={()=>this.componentDidMount()} />}
-                    initialNumToRender={rencontres.length}
-                  />
+              <View>
+                {this.renderRefresh()}
+                    <FlatList
+                      data={rencontres}
+                      renderItem={({item}) => <ResultPronosticItem rencontre={item} joueur={user} />}
+                      keyExtractor={item => item.id.toString()}
+                      style={{ marginBottom:120}}
+                      refreshControl={<RefreshControl onRefresh={()=>this.componentDidMount()} />}
+                      initialNumToRender={rencontres.length}
+                    />
+                </View>
             </View>
           }
       </View>
@@ -84,6 +112,19 @@ const styles = StyleSheet.create({
     fontSize:18,
     fontWeight:'bold',
     color: COLOR.grey
-  }
+  },
+  submit:{
+    marginTop: 20,
+    width: 30,
+    height:30,
+    backgroundColor:'white',
+    borderRadius: 20,
+
+  },
+  checkIcon:{
+    position: 'absolute',
+    right: 4,
+    top:0,
+  },
 });
 export default ResultatsScreen

@@ -14,6 +14,12 @@ class AdminPronosticsView extends Component {
     };
   }
   componentDidMount(){
+    this.setState({
+      isLoading: true
+    })
+    this.setState({
+      isLoading: false
+    })
   }
   render(){
     const isLoading = this.state.isLoading;
@@ -25,7 +31,7 @@ class AdminPronosticsView extends Component {
               <div className='titleContainer'>
                 <p className='titleText'>Gestion des rencontres</p>
               </div>
-            <RencontresManagement />
+            <RencontresManagement reload={this.componentDidMount.bind(this)}/>
             </div>
             <div className='demiContainer'>
               <div className='titleContainer'>

@@ -37,17 +37,36 @@ class PronosticsManagement extends Component {
     const pronostics = this.state.pronostics
     const isLoading = this.state.isLoading
     return (
-      <div className="RencontresManagementContainer">
+      <div className="pronosticsManagementContainer">
         { isLoading ? <div>chargement</div> :
         <div>
-        {pronostics.map(pronostic =>{
-          return(
+          <div className='adminPronosticTabTitleContainer'>
             <div>
-              <AdminPronosticFragment pronostic={pronostic} />
+              Pronostiqueur
             </div>
-          )
-        })
-      }
+            <div>
+              Rencontre
+            </div>
+            <div>
+              Pronostic
+            </div>
+          </div>
+          {
+            pronostics.length > 0 ?
+            <div className='adminPronosticTableContainer'>
+              {pronostics.map(pronostic =>{
+                return(
+                  <div>
+                    <AdminPronosticFragment pronostic={pronostic} reload={this.componentDidMount.bind(this)}/>
+                  </div>
+                )
+              })
+            }
+            </div>
+            :null
+          }
+
+
 
         </div>
       }

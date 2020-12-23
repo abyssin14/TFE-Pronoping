@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getPronostics } from '../utils/fetching'
+import { deletePronostic } from '../utils/fetching'
 
 class AdminPronosticFragment extends Component {
   constructor(props) {
@@ -12,12 +12,44 @@ class AdminPronosticFragment extends Component {
   componentDidMount(){
 
   }
+  handleDeleteClick(){
 
+    var confirmation = confirm("Êtes-vous sûr de vouloir supprimer ce pronostic ?")
+    if(confirmation){
+      this.setState({
+        isLoading: true
+      })
+      deletePronostic(this.props.pronostic.id).then(response =>{
+        if(response){
+          this.setState({
+            isLoading: false,
+          })
+          this.props.reload()
+        }
+      })
+    }
+  }
   render(){
     const pronostic = this.props.pronostic
     console.log(pronostic)
     return (
-      <div>{pronostic.joueur.username}</div>
+      <div style={{position:'relative'}}>
+        <div className='adminPronosticFragmentContainer'>
+          <div className='adminPronosticFragmentContainerCell'>
+            {pronostic.joueur.username}
+          </div>
+          <div className='adminPronosticFragmentContainerCell'>
+            {pronostic.rencontre.equipe.nom} contre {pronostic.rencontre.adversaire}
+          </div>
+          <div className='adminPronosticFragmentContainerCell'>
+            {pronostic.score[0]}/{pronostic.score[1]}
+          </div>
+        </div>
+        <div style={{position:'absolute',top:5, right:5}}>
+          <span className="boutonDelete" onClick={this.handleDeleteClick.bind(this)}>&#x274C;</span>
+        </div>
+      </div>
+
     );
   }
 

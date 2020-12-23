@@ -58,7 +58,6 @@ class AdminRencontreFragment extends Component {
             this.setState({
               isLoading: false,
             })
-            console.log('reload')
             this.props.reload()
           }
         })

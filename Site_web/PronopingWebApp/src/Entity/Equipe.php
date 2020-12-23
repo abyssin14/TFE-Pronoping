@@ -24,20 +24,19 @@ class Equipe
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups("club:read")
-     * @Groups({"equipe:read", "equipe:write", "club:read", "club:write", "rencontre:read", "rencontre:write"})
+     * @Groups({"equipe:read", "equipe:write", "club:read", "club:write", "rencontre:read", "rencontre:write", "pronostic:read", "pronostic:write"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"equipe:read", "equipe:write", "club:read", "club:write", "rencontre:read"})
+     * @Groups({"equipe:read", "equipe:write", "club:read", "club:write", "rencontre:read", "pronostic:read", "pronostic:write"})
      */
     private $nom;
 
     /**
      * @ORM\Column(type="integer")
-     * @Groups({"equipe:read", "equipe:write", "club:read", "club:write", "rencontre:read"})
+     * @Groups({"equipe:read", "equipe:write", "club:read", "club:write", "rencontre:read", "pronostic:read", "pronostic:write"})
      */
     private $division;
 

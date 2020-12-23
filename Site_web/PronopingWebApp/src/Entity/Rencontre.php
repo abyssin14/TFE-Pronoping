@@ -47,7 +47,7 @@ class Rencontre
 
     /**
      * @ORM\ManyToOne(targetEntity=Equipe::class, inversedBy="rencontres")
-     * @Groups({"rencontre:read", "rencontre:write"})
+     * @Groups({"rencontre:read", "rencontre:write", "pronostic:read"})
      */
     private $equipe;
 
