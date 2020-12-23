@@ -30,7 +30,7 @@ class JoueursManagement extends Component {
     })
     let listMatriculesUpdate = this.props.club.listMatricules;
     listMatriculesUpdate.push(this.state.matricule)
-    addMatriculeToClub(7,listMatriculesUpdate).then(response =>{
+    addMatriculeToClub(1,listMatriculesUpdate).then(response =>{
       console.log(response)
       if(response){
         this.setState({

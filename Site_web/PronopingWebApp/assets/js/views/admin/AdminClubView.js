@@ -13,7 +13,7 @@ class AdminClubView extends Component {
     };
   }
   componentDidMount(){
-    getClub(7).then(result => {
+    getClub(1).then(result => {
       this.setState({
         club: result,
         isLoading: false

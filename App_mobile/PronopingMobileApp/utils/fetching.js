@@ -244,7 +244,7 @@ export async function connection(username, password){
 }
 
 export async function signup(username, password, matricule){
-  var club = await getClub(7);
+  var club = await getClub(1);
   const listMatricules = club.listMatricules;
   var matriculeFound = false;
   for(let i=0; i<listMatricules.length; i++){
@@ -277,7 +277,7 @@ export async function signup(username, password, matricule){
 }
 
 export async function updateUsername(id, username){
-  var club = await getClub(7);
+  var club = await getClub(1);
   for(let i=0; i < club.joueurs.length; i++){
     if(club.joueurs[i].username == username){
       return "usernameError"

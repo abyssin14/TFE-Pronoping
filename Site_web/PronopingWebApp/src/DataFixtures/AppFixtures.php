@@ -12,7 +12,7 @@ class AppFixtures extends Fixture
         // $product = new Product();
         $club = new \App\Entity\Club();
         $club->setNom("PC-Purnode");
-        $club->setListMatricules([]);
+        $club->setListMatricules(["PpNimda1"]);
         $manager->persist($club);
         $manager->flush();
     }

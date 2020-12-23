@@ -1,6 +1,8 @@
 import { getPointsRapportes } from "./CalculPoints.js"
 
-const HOST = "http://localhost:8000";
+//const HOST = "http://localhost:8000";
+const HOST = "http://s854745023.onlinehome.fr";
+
 
 export async function getJoueurs(){
     const response = await fetch(HOST+"/api/joueurs/");

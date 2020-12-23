@@ -40,7 +40,7 @@ class EquipesManagement extends Component {
           "nom": this.state.equipe,
           "division": parseInt(this.state.division),
     })
-    postEquipe(this.state.equipe,parseInt(this.state.division),7).then(response =>{
+    postEquipe(this.state.equipe,parseInt(this.state.division),1).then(response =>{
       console.log(response)
       if(response){
         this.setState({

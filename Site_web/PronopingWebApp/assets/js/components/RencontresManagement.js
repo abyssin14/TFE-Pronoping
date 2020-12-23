@@ -28,7 +28,7 @@ class RencontresManagement extends Component {
     this.setState({
       isLoading: true
     })
-    getEquipesInClub(7).then(result => {
+    getEquipesInClub(1).then(result => {
       this.setState({
         listEquipes : result,
         isLoading: false
