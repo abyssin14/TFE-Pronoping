@@ -69,6 +69,7 @@
 .btn{
    background-color: #fb5529;
    color: #fff;
+   margin: 5px;
 }
 .boutonDelete{
   cursor: pointer;
@@ -76,7 +77,13 @@
   background-color: var(--grey);
   padding-bottom: 1.5px;
   border-radius: 5px;
-
+}
+.boutonDeleteSmall{
+  cursor: pointer;
+  background-color: var(--grey);
+  padding-bottom: 1.5px;
+  border-radius: 5px;
+  font-size:12px;
 }
 
 /* ------------- ResultatsView ---------------- */
@@ -161,7 +168,84 @@ margin-top: 5px;
 margin-bottom: 5px;
 text-align: center
 }
-/* ------------- ClubView ---------------- */
+/* ------------- GestionClubView ---------------- */
+.equipeFragment{
+  position: relative;
+  display: inline-flex;
+  width: 45%;
+  height: 40px;
+  border: solid 2px var(--lightGrey);
+  border-radius: 10px;
+  align-items: center;
+  margin: 2%;
+  padding: 2%;
+}
+.equipeFragmentText{
+  width:50%;
+}
+.deleteEquipe{
+  position: absolute;
+  right: 5px;
+}
+.addEquipeContainer{
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
 
+.matriculeContainer{
+  width: 30%;
+  max-height:100%;
+  overflow-y: scroll;
+  border: solid 2px #fb5529;
+  border-radius: 5px;
+  text-align: center;
+}
+.matriculeFragment{
+  position: relative;
+  border: solid 2px var(--lightGrey);
+  border-radius: 10px;
+  margin: 2%;
+}
+.deleteMatricule{
+  position: absolute;
+  top:-2px;
+  right:5px
+}
+.joueursContainer{
+  width: 70%;
+  margin-left: 1%;
+  max-height:100%;
+  text-align: center;
+  overflow-y: scroll;
+  border: solid 2px #fb5529;
+  border-radius: 5px;
+}
+.pronostiqueurFragment{
+  position: relative;
+  display: flex;
+  height: 40px;
+  border: solid 2px var(--lightGrey);
+  border-radius: 10px;
+  align-items: center;
+  margin: 2%;
+  padding: 2%;
+}
+.pronostiqueurFragmentText{
+  width:45%;
+}
+.editButton{
+  position: absolute;
+  top:-2px;
+  right:-5px;
+  cursor: pointer
+}
+.editPointInput{
+  max-height:30px;
+  width: 40px;
+  margin-left: 5px;
+  border: 1px solid var(--lightGrey);
+  border-radius: 5px;
+}
 
 /* ------------- ProfilView ---------------- */

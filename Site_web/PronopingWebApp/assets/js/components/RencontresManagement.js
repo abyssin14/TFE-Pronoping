@@ -111,10 +111,9 @@ class RencontresManagement extends Component {
                     }
                   </select>
                   <input type="text" placeholder="Nom de l'équipe adverse" className="form-control addRencontreInput" onChange={this.handleInputAdversaireChange}/>
-                  <DatePicker locale="fr" className="form-control addRencontreInput" selected={this.state.date} onChange={date => this.setDate(date)} /> <br></br>
+                  <DatePicker placeholderText="Date du match" locale="fr" className="form-control addRencontreInput" value={this.state.date ? this.state.date.toLocaleDateString() : null} selected={this.state.date} onChange={date => this.setDate(date)} /> <br></br>
                   <span className="btn w-100" onClick={this.addRencontre}>Ajouter</span>
                 </div>
-
               </div>
             </div>
           }

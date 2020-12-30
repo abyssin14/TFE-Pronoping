@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getClub, postEquipe } from '../utils/fetching'
+import { getEquipesInClub, postEquipe, deleteEquipe } from '../utils/fetching'
 
 class EquipesManagement extends Component {
   constructor(props) {
@@ -13,12 +13,23 @@ class EquipesManagement extends Component {
     this.handleInputEquipeChange = this.handleInputEquipeChange.bind(this);
     this.handleInputDivisionChange = this.handleInputDivisionChange.bind(this);
     this.addEquipe = this.addEquipe.bind(this);
+    this.handleDeleteClick = this.handleDeleteClick.bind(this);
+
   }
   componentDidMount(){
-    console.log(this.props.club)
     this.setState({
-      listEquipes : this.props.club.equipes
+      isLoading: true,
     })
+    getEquipesInClub(this.props.club.id).then(response=>{
+      response.sort(function(a,b){
+        return a.division - b.division
+      })
+        this.setState({
+          listEquipes : response,
+          isLoading: false
+        })
+    })
+
   };
   handleInputEquipeChange(event){
     this.setState({
@@ -35,44 +46,53 @@ class EquipesManagement extends Component {
       isLoading: true,
       listEquipes: [],
     })
-    let listEquipesUpdate = this.props.club.equipes
-    listEquipesUpdate.push({
-          "nom": this.state.equipe,
-          "division": parseInt(this.state.division),
-    })
     postEquipe(this.state.equipe,parseInt(this.state.division),1).then(response =>{
-      console.log(response)
       if(response){
-        this.setState({
-          listEquipes: listEquipesUpdate,
-          isLoading: false,
-        })
+        this.componentDidMount()
       }
 
     })
   }
+  handleDeleteClick(equipe){
+    var confirmation = confirm("Attention en supprimant cette équipe, toutes les rencontres liées à celle-ci seront également supprimées.")
+    if(confirmation){
+      this.setState({
+        isLoading: true
+      })
+      deleteEquipe(equipe).then(response =>{
+        if(response){
+          this.componentDidMount()
+        }
+      })
+    }
+  }
   render(){
     const isLoading = this.state.isLoading
       return (
-        <div>
+        <div className="RencontresManagementContainer">
             { isLoading ? <div>chargement....</div> :
             <div>
               <div>
-                <h1>gestion des équipes</h1>
-
-                liste des équipes :
-                {this.state.listEquipes.map(item =>{
+                {this.state.listEquipes.map(equipe =>{
                   return(
-                    <div>{item.nom}  {item.division}</div>
+                    <div className="equipeFragment">
+                      <div className="equipeFragmentText">{equipe.nom}</div>
+                      <div className="equipeFragmentText">Divsion {equipe.division}</div>
+                      <div className="deleteEquipe"><span className="boutonDelete" onClick={this.handleDeleteClick.bind(this, equipe)}>&#x274C;</span></div>
+                    </div>
                   )
                 })}
               </div>
 
             <div>
-              Ajouter une équipe :
-            <input type="text" placeholder="Nom de l'équipe" className="form-control w-50 h-75" onChange={this.handleInputEquipeChange}/>
-            <input type="number" placeholder="Division de l'équipe" className="form-control w-50 h-75" onChange={this.handleInputDivisionChange}/>
-            <span className="btn btn-success w-10" onClick={this.addEquipe}>Ajouter</span>
+
+
+            </div>
+            <div className="addEquipeContainer">
+                <p style={{textAlign:'center'}}>Ajouter une équipe :</p>
+                  <input type="text" placeholder="Nom de l'équipe" className="form-control addRencontreInput" onChange={this.handleInputEquipeChange}/>
+                  <input type="number" placeholder="Division de l'équipe" className="form-control addRencontreInput" onChange={this.handleInputDivisionChange}/>
+                <span className="btn w-100" onClick={this.addEquipe}>Ajouter</span>
             </div>
           </div>
         }

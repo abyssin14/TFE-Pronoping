@@ -53,7 +53,7 @@ class Rencontre
 
     /**
      * @ORM\Column(type="array", nullable=true)
-     * @Groups({"rencontre:read", "rencontre:write", "pronostic:read"})
+     * @Groups({"rencontre:read", "rencontre:write", "pronostic:read", "equipe:read", "equipe:write"})
      */
     private $score = [];
 

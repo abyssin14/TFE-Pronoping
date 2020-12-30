@@ -1,7 +1,7 @@
 import { getPointsRapportes } from "./CalculPoints.js"
 
-//const HOST = "http://localhost:8000";
-const HOST = "http://s854745023.onlinehome.fr";
+const HOST = "http://localhost:8000";
+//const HOST = "https://pronoping.tristanpestiaux.com";
 
 
 export async function getJoueurs(){
@@ -18,6 +18,33 @@ export async function getJoueur(id){
     }
 }
 
+export async function updateJoueur(id, points){
+  const response = await fetch(HOST+"/api/joueurs/"+id,{
+    method: 'PATCH',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/merge-patch+json',
+    },
+    body: JSON.stringify({
+      "nbPoints": points
+    })
+  })
+  return response.ok
+}
+export async function deleteJoueur(joueur){
+  for(let i=0; i < joueur.pronostics.length; i++){
+    await deletePronostic(joueur.pronostics[i].id)
+  }
+  const response = await fetch(HOST + '/api/joueurs/'+joueur.id,{
+    method: 'DELETE',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    }
+  });
+  return response.ok
+}
+
 export async function getClubs(){
     const response = await fetch(HOST + "/api/clubs?page=1");
     if(response.ok){
@@ -32,7 +59,7 @@ export async function getClub(id){
     }
 }
 
-export async function addMatriculeToClub(clubId, listMatricules){
+export async function updateMatriculeListToClub(clubId, listMatricules){
   const response = await fetch(HOST+"/api/clubs/"+clubId,{
     method: 'PATCH',
     headers: {
@@ -88,6 +115,19 @@ export async function postEquipe(nom, division, clubId){
         })
     });
     return response.ok;
+}
+export async function deleteEquipe(equipe){
+  for(let i=0; i < equipe.rencontres.length; i++){
+    await deleteRencontre(equipe.rencontres[i])
+  }
+  const response = await fetch(HOST + '/api/equipes/'+equipe.id,{
+    method: 'DELETE',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    }
+  });
+  return response.ok
 }
 
 export async function getRencontres(){
@@ -207,16 +247,10 @@ export async function updatePoint(rencontreId){
     let joueur = await getJoueur(joueurId);
     let pointsJoueur = joueur.nbPoints ? joueur.nbPoints : 0;
     let newPointsJoueur = pointsJoueur + points;
-    await fetch(HOST+"/api/joueurs/"+joueurId,{
-      method: 'PATCH',
-      headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/merge-patch+json',
-      },
-      body: JSON.stringify({
-        "nbPoints": newPointsJoueur
-      })
-    })
+    var response = await updateJoueur(joueurId, newPointsJoueur)
+    if(!response){
+      return false
+    }
   }
   return true
 }

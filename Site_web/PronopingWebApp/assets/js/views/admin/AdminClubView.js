@@ -23,14 +23,20 @@ class AdminClubView extends Component {
   render(){
     const isLoading = this.state.isLoading;
     return (
-      <div>
+      <div className='backgroundContainer'>
         { isLoading ? <div>chargement</div> :
-          <div className='clubContainer'>
-            <div className='gestionclubContainer'>
-            <EquipesManagement club={this.state.club} />
+          <div className='doubleContainer'>
+            <div className='demiContainer'>
+              <div className='titleContainer'>
+                <p className='titleText'>Gestion des équipes</p>
+              </div>
+              <EquipesManagement club={this.state.club} />
             </div>
-            <div className='gestionclubContainer'>
-            <JoueursManagement club={this.state.club} />
+            <div className='demiContainer'>
+              <div className='titleContainer'>
+                <p className='titleText'>Gestion des pronostiqueurs</p>
+              </div>
+              <JoueursManagement club={this.state.club} />
             </div>
           </div>
         }
