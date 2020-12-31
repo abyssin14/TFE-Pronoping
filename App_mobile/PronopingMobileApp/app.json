@@ -26,8 +26,8 @@
       "versionCode": 1,
       "softwareKeyboardLayoutMode": "pan",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
+        "foregroundImage": "./assets/PronopingLogo150_150.png",
+        "backgroundColor": "#232531"
       }
     },
     "web": {

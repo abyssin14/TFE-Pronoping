@@ -44,9 +44,12 @@ class Navigation extends React.Component {
    this.setState({
      isLoading: false,
    })
-   const isAuth = await AsyncStorage.getItem('isAuth')
    const userId = await AsyncStorage.getItem('userId')
    const user = await getJoueur(userId)
+   var isAuth = null
+   if(user){
+      isAuth = await AsyncStorage.getItem('isAuth')
+   }
    this.setState({
      isAuth: isAuth,
      user: user,

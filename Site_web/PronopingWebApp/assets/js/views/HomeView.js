@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import {
   Link
 } from "react-router-dom";
+import qrCode from '../../Images/qr-code.png'
 
 class HomeView extends Component {
   constructor(props) {
@@ -39,9 +40,12 @@ class HomeView extends Component {
         <div className="HomeMobileAppContainer">
           <div className="HomeMobileAppTitle">
             Une application est également disponible sur android, télécharge la :
-            <Link to="/app.js" target="_blank" download>
-              Qr Code
-            </Link>
+            <div>
+              <img src={qrCode} width='50%' className="qrCode"></img>
+              <div className="EtapeDownload">1) Scan le qr code</div>
+              <div className="EtapeDownload">2) télécharge le fichier (.apk)</div>
+
+            </div>
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import { getPointsRapportes } from "./CalculPoints.js"
-
-const HOST = "http://192.168.1.28:8000";
+const HOST = "https://pronoping.tristanpestiaux.com";
+//const HOST = "http://192.168.1.28:8000";
 
 export async function getJoueurs(){
     const response = await fetch(HOST+"/api/joueurs/");
@@ -240,7 +240,9 @@ export async function connection(username, password){
     body: formData
   })
   const body = await response.text()
-  return body.length == 51116
+  console.log(body.length)
+  console.log('attendue : 51139')
+  return body.length == 51139
 }
 
 export async function signup(username, password, matricule){
