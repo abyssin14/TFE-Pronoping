@@ -12,7 +12,7 @@
 
   --fgrad: linear-gradient(
     139deg,
-    rgba(51, 51, 51, 1) 2%,
+    rgba(51, 51, 51, 1) 10%,
     rgb(251,85,41) 50%,
     rgba(51, 51, 51, 1) 98%
   );
@@ -33,6 +33,9 @@
   height:100vh;
   width: 100vw;
   background-color: var(--lightGrey);
+  font-family: Abel;
+  overflow: scroll
+
 }
 .doubleContainer{
   display: flex;
@@ -247,5 +250,43 @@ text-align: center
   border: 1px solid var(--lightGrey);
   border-radius: 5px;
 }
-
+/* ------------- ProfilView ---------------- */
+.BienvenueText{
+  font-size: 35px;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  padding: 3%
+}
+.HomeDescriptionContainer{
+  width: 60vw;
+  padding-left: 15%;
+  padding-bottom: 10%;
+}
+.HomeDescriptionTitle{
+  font-size: 22px;
+  color: #fb5529;
+  font-weight: bold;
+}
+.HomeDescriptionText{
+  font-size: 16px;
+  color: white
+}
+.HomeMobileAppContainer{
+  width: 30vw;
+  height:50vh;
+  position: absolute;
+  top:25%;
+  right:5%;
+  background-color: white;
+  border-radius: 5%;
+  border: solid 2px #fb5529;
+}
+.HomeMobileAppTitle{
+  color: #fb5529;
+  padding: 2%;
+  font-size: 17px;
+  font-weight: bold;
+  text-align: center;
+}
 /* ------------- ProfilView ---------------- */

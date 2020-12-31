@@ -13,7 +13,9 @@ import  ProfilView  from './views/ProfilView';
 import  ResultatsView  from './views/ResultatsView';
 import  AdminPronosticsView from './views/admin/AdminPronosticsView';
 import  AdminClubView from './views/Admin/adminClubView';
+import HomeView from './views/HomeView'
 import { getJoueur } from './utils/fetching';
+import logo from '../Images/PronopingLogo.png'
 
 
 import history from "../history";
@@ -33,6 +35,12 @@ class Index extends Component {
         user: response,
         isLoading: false
       });
+      var logoDiv = document.getElementsByClassName('_R2FsI')[0]
+      logoDiv.style.cursor = 'pointer'
+      logoDiv.addEventListener('click',()=>{
+        history.push('/user/home')
+      })
+
     })
   }
   isUser(){
@@ -49,6 +57,7 @@ class Index extends Component {
               :
               <div>
                 <Navbar
+                  logo={logo}
                   menuItems={[
                     {
                       title: "Mon profil",
@@ -112,6 +121,7 @@ class Index extends Component {
                   ]}
                 />
                   <Switch>
+                    <Route exact path="/user/home" component={() => <HomeView />} />
                     <Route exact path="/user/pronostic" component={() => <PronosticView user= {this.state.user} />} />
                     <Route exact path="/user/resultats" component={() => <ResultatsView user= {this.state.user} />} />
                     <Route exact path="/user/profil" component={() => <ProfilView user= {this.state.user} />} />
