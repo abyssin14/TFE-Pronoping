@@ -76,15 +76,16 @@
 }
 .boutonDelete{
   cursor: pointer;
-
   background-color: var(--grey);
-  padding-bottom: 1.5px;
+  padding-top: 2.5px;
+  padding-bottom: 2.5px;
   border-radius: 5px;
 }
 .boutonDeleteSmall{
   cursor: pointer;
   background-color: var(--grey);
-  padding-bottom: 1.5px;
+  padding-top: 2.5px;
+  padding-bottom: 2.5px;
   border-radius: 5px;
   font-size:12px;
 }
@@ -295,3 +296,59 @@ text-align: center
   padding-left: 2%;
 }
 /* ------------- ProfilView ---------------- */
+.profilContainer{
+  width: 50vw;
+  background-color: white;
+  border: solid 2px #fb5529;
+  border-radius: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.informationsContentContainer{
+  text-align: center;
+  font-size: 17px;
+}
+.editInfoContainer{
+  margin-top: 5px;
+}
+.editUsernameContainer{
+  display: flex;
+  width: 75%;
+  margin-left: 20%
+}
+.changeUsernameInput{
+  margin-bottom: 5px;
+  max-width:40%;
+  height: 40px;
+  margin-left: 5px;
+}
+.editBtn{
+  align-self: center;
+  margin-bottom: 50px;
+  height: 38px;
+}
+.editPasswordContainer{
+  margin-top: -25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.logoutBtnContainer{
+  display: flex;
+  justify-content: center;
+}
+.logoutBtn{
+  background-color: red;
+  height: 40px;
+  margin-top: 15px;
+  border-radius: 50px;
+  text-align: center;
+  padding: 7.5px 70px 10px 70px;
+  cursor: pointer;
+  color: white;
+  font-size: 18px;
+}
+.logoutBtn:hover{
+text-decoration: none;
+color: white
+}
