@@ -16,14 +16,9 @@ class AdminPronosticFragment extends Component {
 
     var confirmation = confirm("Êtes-vous sûr de vouloir supprimer ce pronostic ?")
     if(confirmation){
-      this.setState({
-        isLoading: true
-      })
+      this.props.loading()
       deletePronostic(this.props.pronostic.id).then(response =>{
         if(response){
-          this.setState({
-            isLoading: false,
-          })
           this.props.reload()
         }
       })
@@ -31,7 +26,6 @@ class AdminPronosticFragment extends Component {
   }
   render(){
     const pronostic = this.props.pronostic
-    console.log(pronostic)
     return (
       <div style={{position:'relative'}}>
         <div className='adminPronosticFragmentContainer'>

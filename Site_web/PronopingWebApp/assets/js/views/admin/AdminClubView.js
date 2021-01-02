@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import EquipesManagement from "../../components/EquipesManagement"
 import JoueursManagement from "../../components/JoueursManagement"
 import { getClub } from '../../utils/fetching'
+import Loader from 'react-loader-spinner'
+
 
 
 class AdminClubView extends Component {
@@ -24,7 +26,16 @@ class AdminClubView extends Component {
     const isLoading = this.state.isLoading;
     return (
       <div className='backgroundContainer'>
-        { isLoading ? <div>chargement</div> :
+        { isLoading ?
+          <Loader
+             type="Rings"
+             color="#fb5529"
+             height={80}
+             width={80}
+             className='loader'
+             timeout={8000}
+          />
+        :
           <div className='doubleContainer'>
             <div className='demiContainer'>
               <div className='titleContainer'>

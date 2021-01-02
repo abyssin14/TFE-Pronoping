@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { getEquipesInClub, postEquipe, deleteEquipe } from '../utils/fetching'
+import Loader from 'react-loader-spinner'
 
 class EquipesManagement extends Component {
   constructor(props) {
@@ -70,7 +71,16 @@ class EquipesManagement extends Component {
     const isLoading = this.state.isLoading
       return (
         <div className="RencontresManagementContainer">
-            { isLoading ? <div>chargement....</div> :
+          { isLoading ?
+            <Loader
+               type="Rings"
+               color="#fb5529"
+               height={80}
+               width={80}
+               className='loader'
+               timeout={8000}
+            />
+          :
             <div>
               <div>
                 {this.state.listEquipes.map(equipe =>{

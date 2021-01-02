@@ -5,6 +5,8 @@ import fr from 'date-fns/locale/fr';
 import "react-datepicker/dist/react-datepicker.css";
 import { postRencontre, getEquipe, getEquipesInClub } from '../utils/fetching'
 import AdminRencontreFragment from './AdminRencontreFragment'
+import Loader from 'react-loader-spinner'
+
 
 registerLocale('fr', fr)
 
@@ -53,13 +55,12 @@ class RencontresManagement extends Component {
     })
   }
   async addRencontre(){
-    var equipe = await getEquipe(this.state.equipeId)
     this.setState({
       isLoading: true,
       listEquipes: [],
     })
+    var equipe = await getEquipe(this.state.equipeId)
     postRencontre(equipe,this.state.adversaire, this.state.date).then(response =>{
-      console.log(response)
       if(response){
         this.componentDidMount()
       }
@@ -67,6 +68,9 @@ class RencontresManagement extends Component {
     })
   }
   reload(){
+    this.setState({
+      isLoading: true
+    })
     this.props.reload();
   }
   render(){
@@ -75,7 +79,16 @@ class RencontresManagement extends Component {
     return (
 
         <div className="RencontresManagementContainer">
-          { isLoading ? <div>chargement</div> :
+          { isLoading ?
+            <Loader
+               type="Rings"
+               color="#fb5529"
+               height={80}
+               width={80}
+               className='loader'
+               timeout={8000}
+            />
+          :
             <div>
               <div>
                 {this.state.listEquipes.map(equipe =>{
@@ -87,7 +100,7 @@ class RencontresManagement extends Component {
                             return(
                               <div>
                                 {!rencontre.isFinished ?
-                                    <AdminRencontreFragment rencontre={rencontre} equipe={equipe} reload={this.reload.bind(this)} />
+                                    <AdminRencontreFragment rencontre={rencontre} equipe={equipe} reload={this.reload.bind(this)} loading={()=>this.setState({isLoading:true})} />
                                   : null}
                               </div>
                             )

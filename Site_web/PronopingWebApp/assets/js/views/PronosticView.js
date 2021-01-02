@@ -44,7 +44,7 @@ class PronosticView extends Component {
       <div>
         { isLoading ? <div>chargement....</div> :
         <div>
-          <h1>Pronostic Page!</h1>
+          <h1 className='titlePage'>Pronostic Page!</h1>
           <div>
             {this.renderRencontre()}
           </div>

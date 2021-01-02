@@ -33,31 +33,20 @@ class AdminRencontreFragment extends Component {
   handleDeleteClick(){
     var confirmation = confirm("Attention en supprimant cette rencontre, tous les pronostics liés à celle-ci seront également supprimés.")
     if(confirmation){
-      this.setState({
-        isLoading: true
-      })
+      this.props.loading(true)
       deleteRencontre(this.props.rencontre).then(response =>{
         if(response){
-          this.setState({
-            isLoading: false,
-          })
           this.props.reload()
         }
       })
     }
   }
   addPronostic(){
-    this.setState({
-      isLoading: true
-    })
+    this.props.loading()
     addScoreRencontre(this.props.rencontre.id, this.state.tabScore).then(response =>{
       if(response){
         updatePoint(this.props.rencontre.id).then(response =>{
           if(response){
-            console.log(response)
-            this.setState({
-              isLoading: false,
-            })
             this.props.reload()
           }
         })

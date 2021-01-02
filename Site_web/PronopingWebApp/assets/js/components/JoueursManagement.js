@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { getClub, updateMatriculeListToClub, deleteJoueur, getJoueurs, updateJoueur } from '../utils/fetching'
+import Loader from 'react-loader-spinner'
 
 class JoueursManagement extends Component {
   constructor(props) {
@@ -131,7 +132,16 @@ class JoueursManagement extends Component {
 
     return (
       <div className="RencontresManagementContainer">
-      { isLoading ? <div>chargement....</div> :
+        { isLoading ?
+          <Loader
+             type="Rings"
+             color="#fb5529"
+             height={80}
+             width={80}
+             className='loader'
+             timeout={8000}
+          />
+        :
         <div style={{display:'flex', flexDirection:'row'}}>
           <div className='matriculeContainer'>
             <div>

@@ -2,15 +2,15 @@ import React, { Component } from "react";
 import RencontresManagement from "../../components/RencontresManagement.js"
 import PronosticsManagement from "../../components/PronosticsManagement.js"
 import { getEquipesInClub } from '../../utils/fetching'
+import Loader from 'react-loader-spinner'
+
 
 
 class AdminPronosticsView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      equipes: null,
       isLoading: false,
-      reload: false,
     };
   }
   componentDidMount(){
@@ -25,7 +25,16 @@ class AdminPronosticsView extends Component {
     const isLoading = this.state.isLoading;
     return (
       <div className='backgroundContainer'>
-        { isLoading ? <div>chargement</div> :
+        { isLoading ?
+          <Loader
+             type="Rings"
+             color="#fb5529"
+             height={80}
+             width={80}
+             className='loader'
+             timeout={8000}
+          />
+        :
           <div className='doubleContainer'>
             <div className='demiContainer'>
               <div className='titleContainer'>

@@ -37,6 +37,17 @@
   overflow: scroll
 
 }
+.loader{
+  text-align: center;
+
+}
+.titlePage{
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 5px;
+  margin-bottom: 0px
+}
 .doubleContainer{
   display: flex;
   justify-content: space-between;
@@ -297,6 +308,7 @@ text-align: center
 }
 /* ------------- ProfilView ---------------- */
 .profilContainer{
+  margin-top: 20px;
   width: 50vw;
   background-color: white;
   border: solid 2px #fb5529;
@@ -351,4 +363,52 @@ text-align: center
 .logoutBtn:hover{
 text-decoration: none;
 color: white
+}
+/* ------------- ClassementView ---------------- */
+
+.classementContainer{
+  display: flex;
+  width: 60vw;
+  margin-left: auto;
+  margin-right: auto;
+  border: 2px solid #fb5529;
+  border-radius: 5px;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  background-color: #fb5529;
+  max-height: 73vh;
+  overflow-x: scroll
+}
+.tableContainer{
+  width: 100%;
+  border-radius: 5px;
+  background-color: white;
+  margin-right: 1px;
+  margin:2px;
+}
+.tableHeadContainer{
+  width: 100%;
+  background-color: #fb5529;
+  height: 32px;
+  color: white;
+}
+.tableHeadText{
+  width:25%;
+  text-align: center;
+}
+.tableHeadTextBig{
+  width:50%;
+  text-align: center;
+}
+.tableRowContainer{
+  width: 100%;
+  height: 30px;
+}
+.tableRowText{
+  width:25%;
+  text-align: center;
+}
+.tableRowTextBig{
+  width:50%;
+  text-align: center;
 }

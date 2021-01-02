@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { getRencontres } from "../utils/fetching.js"
 import ResultPronosticFragment from '../components/ResultPronosticFragment.js'
+import Loader from 'react-loader-spinner'
 
 class ResultatsView extends Component {
 
@@ -24,21 +25,32 @@ class ResultatsView extends Component {
     const joueur = this.props.user;
 
     return (
-      <div>
-        { isLoading ? <div>chargement...</div> :
           <div className='backgroundContainer'>
-            <h1>Resultats</h1>
+            <h1 className='titlePage'>Resultats</h1>
             <div className='doubleContainer'>
               <div className='demiContainer'>
                 <div className='titleContainer'>
                   <p className='titleText'>Pronostics actuels</p>
                 </div>
                 <div className='pronosticsActuelsContainer'>
-                  {this.state.rencontres.map(rencontre =>{
-                    return(
-                      <ResultPronosticFragment isCurrentlySection={true} rencontre={rencontre} joueur={joueur}/>
-                      )
-                    })}
+                  { isLoading ?
+                    <Loader
+                       type="Rings"
+                       color="#fb5529"
+                       height={80}
+                       width={80}
+                       className='loader'
+                       timeout={8000}
+                    />
+                  :
+                  <div>
+                    {this.state.rencontres.map(rencontre =>{
+                      return(
+                        <ResultPronosticFragment isCurrentlySection={true} rencontre={rencontre} joueur={joueur}/>
+                        )
+                      })}
+                  </div>
+                  }
                 </div>
               </div>
               <div className='demiContainer'>
@@ -46,18 +58,28 @@ class ResultatsView extends Component {
                   <p className='titleText'>Anciens pronostics</p>
                 </div>
                 <div className='pronosticsActuelsContainer'>
-                  {this.state.rencontres.map(rencontre =>{
-                    return(
-                      <ResultPronosticFragment isCurrentlySection={false} rencontre={rencontre} joueur={joueur}/>
-                      )
-                    })}
+                  { isLoading ?
+                    <Loader
+                       type="Rings"
+                       color="#fb5529"
+                       height={80}
+                       width={80}
+                       className='loader'
+                       timeout={8000}
+                    />
+                  :
+                  <div>
+                    {this.state.rencontres.map(rencontre =>{
+                      return(
+                        <ResultPronosticFragment isCurrentlySection={false} rencontre={rencontre} joueur={joueur}/>
+                        )
+                      })}
+                  </div>
+                  }
                 </div>
               </div>
             </div>
           </div>
-
-        }
-      </div>
     );
   }
 

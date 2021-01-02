@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { getPronostics } from '../utils/fetching'
 import AdminPronosticFragment from '../components/AdminPronosticFragment'
+import Loader from 'react-loader-spinner'
 
 class PronosticsManagement extends Component {
   constructor(props) {
@@ -38,7 +39,16 @@ class PronosticsManagement extends Component {
     const isLoading = this.state.isLoading
     return (
       <div className="pronosticsManagementContainer">
-        { isLoading ? <div>chargement</div> :
+        { isLoading ?
+          <Loader
+             type="Rings"
+             color="#fb5529"
+             height={80}
+             width={80}
+             className='loader'
+             timeout={8000}
+          />
+        :
         <div>
           <div className='adminPronosticTabTitleContainer'>
             <div>
@@ -57,7 +67,7 @@ class PronosticsManagement extends Component {
               {pronostics.map(pronostic =>{
                 return(
                   <div>
-                    <AdminPronosticFragment pronostic={pronostic} reload={this.componentDidMount.bind(this)}/>
+                    <AdminPronosticFragment pronostic={pronostic} reload={this.componentDidMount.bind(this)} loading={()=>this.setState({isLoading:true})}/>
                   </div>
                 )
               })
