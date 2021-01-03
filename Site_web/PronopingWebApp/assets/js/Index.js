@@ -102,7 +102,8 @@ class Index extends Component {
                       subItems: [
                         {
                           title: "Gestion des pronostics",
-                          icon: faTrophy,
+                          icon: faUserShield,
+
                           isAuth: this.isAdmin(),
                           onClick: () => {
                             history.push('/admin/pronostics')
@@ -110,7 +111,8 @@ class Index extends Component {
                         },
                         {
                           title: "Gestion du club",
-                          icon: faTrophy,
+                          icon: faUserShield,
+
                           isAuth: this.isAdmin(),
                           onClick: () => {
                             history.push('/admin/club')

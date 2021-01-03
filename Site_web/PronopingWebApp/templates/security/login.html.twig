@@ -4,22 +4,26 @@
 
  {% block body %}
 
-<div class="container mt-4">
-    {% if error %}
-        <div class="alert alert-danger">
-            {{ error.messageKey }}
-        </div>
-    {% endif %}
-    <form action="{{ path('login') }}" method="post">
-        <div class="form-group">
+<div class="loginContainer">
+    <img src='/build/images/PronopingLogo.c46909c6.png' class='LogoPronoping'/>
+    <form action="{{ path('login') }}" method="post" class="formContainer">
+      {% if error %}
+          <div class="alert alert-danger">
+              Nom d'utilisateur ou mot de passe incorrect.
+          </div>
+      {% endif %}
+        <div class="form-group inputLogin">
             <label for="username">Nom d'utilisateur</label>
             <input type="text" id="username" name="_username" class="form-control" value="{{ last_username }}">
         </div>
-        <div class="form-group">
+        <div class="form-group inputLogin">
             <label for="password">Mot de passe</label>
             <input type="password" id="password" name="_password" class="form-control">
         </div>
-        <button type="submit" class="btn btn-primary">Se connecter</button>
+        <div class='buttonsContainer'>
+          <button type="submit" class="btn">Se connecter</button>
+          <a href='/register' class="btn btnRegister">S'inscrire</a>
+        <div>
     </form>
 </div>
  {% endblock %}

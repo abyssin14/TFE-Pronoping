@@ -74,6 +74,8 @@
 
 }
 .scoreInput{
+  margin-top: 5px;
+  max-height:38px;
   max-width: 80px;
   margin-left:2px;
   margin-right:2px;
@@ -286,9 +288,9 @@ text-align: center
 }
 .HomeMobileAppContainer{
   width: 30vw;
-  height:60vh;
+  min-height:70vh;
   position: absolute;
-  top:25%;
+  top:15%;
   right:5%;
   background-color: white;
   border-radius: 5%;
@@ -304,6 +306,7 @@ text-align: center
 .EtapeDownload{
   color: black;
   text-align: left;
+  font-size:  16px;
   padding-left: 2%;
 }
 /* ------------- ProfilView ---------------- */
@@ -411,4 +414,69 @@ color: white
 .tableRowTextBig{
   width:50%;
   text-align: center;
+}
+
+/* ------------- PronostiquerView ---------------- */
+
+.PronosticContainer{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+}
+.PronosticFragment{
+  background-color: white;
+  border: 2px solid #fb5529;
+  border-radius: 20px;
+  margin:15px 30px 15px 30px;;
+  padding:5px;
+  text-align: center;
+  font-size: 18px;
+}
+.editPronosticContainer{
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+}
+/* ------------- LoginView ---------------- */
+
+.loginContainer{
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--grey);
+  color: white;
+  padding: 5%;
+  overflow: scroll
+}
+.formContainer{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: auto;
+  text-align: center;
+  border: 2px solid #fb5529;
+  border-radius: 20px;
+  padding:10px;
+  align-items: center;
+  background-color: var(--lightGrey)
+}
+.inputLogin{
+  margin-top: 10px;
+  text-align: left;
+  width:50%;
+}
+.LogoPronoping{
+  width: 40%;
+  margin-top: -10%;
+  margin-bottom: -5%;
+  margin-left: 30%;
+}
+.buttonsContainer{
+  display: flex;
+}
+.btnRegister{
+  background-color: white;
+  color: #fb5529;
+}
+.btnRegister:hover{
+  background-color: white;
+  color: #fb5529;
 }

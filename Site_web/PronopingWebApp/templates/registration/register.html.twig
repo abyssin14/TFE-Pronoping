@@ -7,32 +7,37 @@
         <div class="alert alert-danger" role="alert">{{ flashError }}</div>
     {% endfor %}
 
-<div class="container mt-4">
+<div class="loginContainer">
+  <img src='/build/images/PronopingLogo.c46909c6.png' class='LogoPronoping'/>
 
     {{ form_start(registrationForm) }}
+    <div class="formContainer">
             <div class="'alert alert-danger">
                 {{ form_errors(registrationForm.username) }}
                 {{ form_errors(registrationForm.password.first) }}
                 {{ form_errors(registrationForm.matricule) }}
             </div>
-            <div class="form-group">
+            <div class="form-group inputLogin">
                 <label for="username">Nom d'utilisateur</label>
                 {{ form_widget(registrationForm.username,{ 'attr': {'class': 'form-control'} }) }}
             </div>
-            <div class="form-group">
+            <div class="form-group inputLogin">
                 <label for="password">Mot de passe</label>
             {{ form_widget(registrationForm.password.first,{ 'attr': {'class': 'form-control'} }) }}
             </div>
-    <div class="form-group">
+    <div class="form-group inputLogin">
         <label for="password">Confirmer le mot de passe</label>
         {{ form_widget(registrationForm.password.second,{ 'attr': {'class': 'form-control'} }) }}
     </div>
-            <div class="form-group">
+            <div class="form-group inputLogin">
                 <label for="matricule">Matricule</label>
                 {{ form_widget(registrationForm.matricule,{ 'attr': {'class': 'form-control'} }) }}
             </div>
-
-            <button type="submit" class="btn btn-primary">Register</button>
+            <div class='buttonsContainer'>
+              <button type="submit" class="btn">S'inscrire</button>
+              <a href='/login' class="btn btnRegister">Se connecter</a>
+            <div>
+            </div>
     {{ form_end(registrationForm) }}
 </div>
 {% endblock %}

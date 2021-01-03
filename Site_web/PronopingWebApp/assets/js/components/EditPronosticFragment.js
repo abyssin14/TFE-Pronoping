@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { postPronostic, updatePreviousPronostics } from '../utils/fetching'
+import Loader from 'react-loader-spinner'
 
 class EditPronosticFragment extends Component {
   constructor(props) {
@@ -72,18 +73,27 @@ class EditPronosticFragment extends Component {
     const isLoading = this.state.isLoading;
     const pronostic = this.state.pronostic;
       return (
-        <div>
-          { isLoading ? <div>chargement....</div> :
+        <div className='PronosticFragment'>
+          { isLoading ?
+            <Loader
+               type="Rings"
+               color="#fb5529"
+               height={80}
+               width={80}
+               className='loader'
+               timeout={8000}
+            />
+          :
           <div>
             {rencontre.equipe.nom} contre {rencontre.adversaire} (division {rencontre.equipe.division}) <br></br>
             pronostics :
             { pronostic ?
-                <div>{pronostic[0]}/{pronostic[1]}</div>
+                <div style={{marginTop:'5px'}}>{pronostic[0]}/{pronostic[1]}</div>
                 :
-              <div>
-                <input type="number" placeholder="ex: 14" className="form-control w-25 h-75" onChange={this.handleInput1ScoreChange}/>
-                <input type="number" placeholder="ex: 2" className="form-control w-25 h-75" onChange={this.handleInput2ScoreChange}/>
-                <span className="btn btn-success w-10" onClick={this.addPronostic}>Valider</span>
+              <div className='editPronosticContainer'>
+                <input type="number" placeholder="ex: 14" className="form-control scoreInput" onChange={this.handleInput1ScoreChange}/>
+                <input type="number" placeholder="ex: 2" className="form-control scoreInput" onChange={this.handleInput2ScoreChange}/>
+                <span className="btn w-10 h-25" onClick={this.addPronostic}>Valider</span>
               </div>
             }
 
