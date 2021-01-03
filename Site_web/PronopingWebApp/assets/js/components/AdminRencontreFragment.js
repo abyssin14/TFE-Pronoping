@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { addScoreRencontre, updatePoint, deleteRencontre } from "../utils/fetching"
+import { checkScore } from '../utils/CalculPoints'
+
 
 class AdminRencontreFragment extends Component {
   constructor(props) {
@@ -42,16 +44,20 @@ class AdminRencontreFragment extends Component {
     }
   }
   addPronostic(){
-    this.props.loading()
-    addScoreRencontre(this.props.rencontre.id, this.state.tabScore).then(response =>{
-      if(response){
-        updatePoint(this.props.rencontre.id).then(response =>{
-          if(response){
-            this.props.reload()
-          }
-        })
-      }
-    })
+    if(checkScore(this.state.tabScore)){
+      this.props.loading()
+      addScoreRencontre(this.props.rencontre.id, this.state.tabScore).then(response =>{
+        if(response){
+          updatePoint(this.props.rencontre.id).then(response =>{
+            if(response){
+              this.props.reload()
+            }
+          })
+        }
+      })
+    }else{
+      alert('Veuillez entrer un score valide !')
+    }
   }
 
   render(){

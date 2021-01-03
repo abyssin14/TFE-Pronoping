@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { postPronostic, updatePreviousPronostics } from '../utils/fetching'
+import { checkScore } from '../utils/CalculPoints'
 import Loader from 'react-loader-spinner'
 
 class EditPronosticFragment extends Component {
@@ -49,23 +50,28 @@ class EditPronosticFragment extends Component {
   }
 
   addPronostic(){
-    this.setState({
-      isLoading: true
-    })
-    postPronostic(this.props.joueur, this.props.rencontre, this.state.tabScore).then(response =>{
-      if(response){
-        this.setState({
-          pronostic: this.state.tabScore
-        })
-        updatePreviousPronostics(this.props.joueur).then(response =>{
-          if(response){
-            this.setState({
-              isLoading: false,
-            })
-          }
-        })
-      }
-    })
+    if(checkScore(this.state.tabScore)){
+      this.setState({
+        isLoading: true
+      })
+      postPronostic(this.props.joueur, this.props.rencontre, this.state.tabScore).then(response =>{
+        if(response){
+          this.setState({
+            pronostic: this.state.tabScore
+          })
+          updatePreviousPronostics(this.props.joueur).then(response =>{
+            if(response){
+              this.setState({
+                isLoading: false,
+              })
+            }
+          })
+        }
+      })
+    }else{
+      alert('Veuillez entrer un score valide !')
+    }
+
   }
 
   render(){

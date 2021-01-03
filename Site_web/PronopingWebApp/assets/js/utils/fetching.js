@@ -1,7 +1,7 @@
 import { getPointsRapportes } from "./CalculPoints.js"
 
-const HOST = "http://localhost:8000";
-//const HOST = "https://pronoping.tristanpestiaux.com";
+//const HOST = "http://localhost:8000";
+const HOST = "https://pronoping.tristanpestiaux.com";
 
 
 export async function getJoueurs(){

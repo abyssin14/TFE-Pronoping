@@ -8,5 +8,4 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 
 
 var rootElement = document.getElementById('root');
-
 ReactDOM.render(<Router history={history}><Index userId={rootElement.getAttribute('userId')}/></Router>, rootElement);

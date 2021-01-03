@@ -43,7 +43,7 @@ class PronosticView extends Component {
     const isLoading = this.state.isLoading;
     return (
       <div className='backgroundContainer' style={{position:'relative'}}>
-            <h1 className='titlePage'>Mon profil</h1>
+            <h1 className='titlePage'>Pronostiquer</h1>
               { isLoading ?
                 <Loader
                    type="Rings"
