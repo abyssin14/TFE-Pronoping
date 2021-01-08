@@ -241,8 +241,8 @@ export async function connection(username, password){
   })
   const body = await response.text()
   console.log(body.length)
-  console.log('attendue : 51139')
-  return body.length == 51139
+  console.log('attendue : < 1000')
+  return body.length < 1000
 }
 
 export async function signup(username, password, matricule){
