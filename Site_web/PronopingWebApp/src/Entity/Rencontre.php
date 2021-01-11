@@ -12,6 +12,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * @ORM\Entity(repositoryClass=RencontreRepository::class)
  * @ApiResource(
+ *     attributes={"security"="is_granted('ROLE_USER')"},
  *     normalizationContext={"groups"={"rencontre:read"}},
  *     denormalizationContext={"groups"={"rencontre:write"}}
  *     )

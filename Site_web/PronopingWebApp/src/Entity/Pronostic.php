@@ -10,6 +10,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * @ORM\Entity(repositoryClass=PronosticRepository::class)
  * @ApiResource(
+ *     attributes={"security"="is_granted('ROLE_USER')"},
  *     normalizationContext={"groups"={"pronostic:read"}},
  *     denormalizationContext={"groups"={"pronostic:write"}}
  *     )

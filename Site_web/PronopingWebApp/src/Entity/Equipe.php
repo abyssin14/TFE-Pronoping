@@ -13,6 +13,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * @ORM\Entity(repositoryClass=EquipeRepository::class)
  * @ApiResource(
+ *     attributes={"security"="is_granted('ROLE_USER')"},
  *     normalizationContext={"groups"={"equipe:read"}},
  *     denormalizationContext={"groups"={"equipe:write"}}
  *     )
