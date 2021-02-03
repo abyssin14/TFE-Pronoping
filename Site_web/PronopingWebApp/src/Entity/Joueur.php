@@ -19,7 +19,6 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
  * @ORM\Entity(repositoryClass="App\Repository\JoueurRepository", repositoryClass=JoueurRepository::class)
  * @UniqueEntity(fields={"username"}, message="Il y a dèjà un compte avec ce nom d'utilisateur.")
  * @ApiResource(
- *     attributes={"security"="is_granted('ROLE_USER')"},
  *     normalizationContext={"groups"={"joueur:read"}},
  *     denormalizationContext={"groups"={"joueur:write"}}
  *     )

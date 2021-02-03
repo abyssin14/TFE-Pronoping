@@ -13,7 +13,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * @ORM\Entity(repositoryClass=ClubRepository::class)
  * @ApiResource(
- *     attributes={"security"="is_granted('ROLE_USER')"},
  *     normalizationContext={"groups"={"club:read"}},
  *     denormalizationContext={"groups"={"club:write"}}
  * )
